@@ -73,7 +73,7 @@ CREATE TABLE formerProperties(
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
-# This automatically adds new properties to the model when added to the previous owned table
+/* This automatically adds new properties to the model when added to the previous owned table */
 CREATE TRIGGER addFormerPropertyToModel AFTER INSERT on formerProperties
 
 BEGIN
@@ -87,7 +87,7 @@ NEW.basement_beds, NEW.total_beds, NEW.attached_gar, NEW.price, NEW.grade, NEW.l
 END;
 
 
-# When a user deletes a previously owned property, this will also delete it from the model
+/* When a user deletes a previously owned property, this will also delete it from the model */
 CREATE TRIGGER deleteFormerPropertyInModel AFTER DELETE on formerProperties
 
 BEGIN
@@ -97,7 +97,7 @@ DELETE FROM properties WHERE address = OLD.address AND zip_code = OLD.zip_code A
 END;
 
 
-# Creates the standard model for each new user
+/* Creates the standard model for each new user */
 CREATE TRIGGER update_userID AFTER INSERT on user 
 
 BEGIN 
