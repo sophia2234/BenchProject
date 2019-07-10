@@ -12,7 +12,7 @@ import re
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 # This method is called when a new user registers and renders register.html or redirects to
-# login page if user successfully registers
+# the login page if user successfully registers
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
