@@ -49,11 +49,13 @@ def register():
         if not lastName:
             error.extend(['Last Name is required.'])
 
-        if not description:
-            error.extend(['A short description is required.'])
-
-        if not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
-            error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+        x = True; 
+        while x:
+            if not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
+                error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+                break
+            else:
+                x = False
         if db.execute(
             'SELECT userId FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
