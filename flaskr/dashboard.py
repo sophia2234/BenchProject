@@ -112,7 +112,7 @@ def changePassword():
 
         if password != passwordConfirmation:
             error = "Passwords do not match"
-        elif not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
+        elif not re.search("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
             error = "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."
         else:
             db.execute(
