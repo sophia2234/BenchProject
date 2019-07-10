@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+
+    <label for="password2">Re-type Password</label>
+    <input type="password" name="password2" id="password2">
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+
+    <label for="firstName">First Name</label>
+    <input type="firstName" name="firstName" id="firstName">
+
+    <label for="lastName">Last Name</label>
+    <input type="lastName" name="lastName" id="lastName">
+
+    <label for="description">Bio</label>
+    <input type="description" name="description" id="description">
+    
+    <input type='submit' value='Register' onClick="savevalue()">
+  </form>
+    <script type="text/javascript">
+    function savevalue() {
+      localStorage.setItem("name", document.getElementById('username').value);
+      localStorage.setItem("fName", document.getElementById('firstName').value);
+      localStorage.setItem("lName", document.getElementById('lastName').value);
+      localStorage.setItem("email", document.getElementById('email').value);
+      localStorage.setItem("desc", document.getElementById('description').value);
+    }
+
+    window.onload = function() {
+      document.getElementById('username').value = localStorage.getItem("name");
+      document.getElementById('firstName').value = localStorage.getItem("fName");
+      document.getElementById('lastName').value = localStorage.getItem("lName");
+      document.getElementById('email').value = localStorage.getItem("email");
+      document.getElementById('description').value = localStorage.getItem("desc");
+      document.getElementById('username').focus();
+    }
+
+  </script>
+{% endblock %}
+
