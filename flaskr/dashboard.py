@@ -107,13 +107,18 @@ def changePassword():
     if request.method == "POST":
         password = request.form['password']
         passwordConfirmation = request.form['password2']
-        error = None
+        error = []
         db = get_db()
 
         if password != passwordConfirmation:
-            error = "Passwords do not match"
-        elif not re.search("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
-            error = "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."
+            error.extend(['Password must match.'])
+        x = True;
+        while x:
+            if not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
+                error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+                break
+            else:
+                x = False
         else:
             db.execute(
             'UPDATE user SET password = ? WHERE userId = ?', (generate_password_hash(password), session.get('user_id'))
@@ -121,7 +126,8 @@ def changePassword():
             db.commit()
             return redirect(url_for('dashboard.index'))
 
-        flash(error)
+        for eror in error:
+            flash(eror)
 
     return render_template('dashboard/index.html')
 
@@ -140,50 +146,50 @@ def table1():
         yearBuilt = request.form['yearBuilt']
         landValue = request.form['landValue']
         buildingValue = request.form['buildingValue']
-        totalValue = int(landValue) + int(buildingValue)
         yearPurchased = request.form['yearPurchased']
         currentYear = int(datetime.datetime.now().year)
-        error = None
+        error = []
         db = get_db()
 
         if re.search("\d+\s.+", address) is None:
-            error = "Please Enter a Valid Address"
-        elif re.search("[0-9]+", beds) is None:
-            error = "Please Enter a Valid Integer of Bedrooms"
-        elif re.search("[0-9]+", baths) is None:
-            error = "Please Enter a Valid Integer of Bathrooms"
-        elif re.search("[0-9]+", halfBaths) is None:
-            error = "Please Enter a Valid Integer of Half Bathrooms"
-        elif re.search("[0-9]+", sqft) is None:
-            error = "Please Enter a Valid Integer of Square Feet"
-        elif re.search("[0-9]+", zip) is None:
-            error = "Please Enter a Valid Zip Code"
+            error.extend(["Please Enter a Valid Address"])
+        if re.search("[0-9]+", beds) is None:
+            error.extend(["Please Enter a Valid Integer of Bedrooms"])
+        if re.search("[0-9]+", baths) is None:
+            error.extend(["Please Enter a Valid Integer of Bathrooms"])
+        if re.search("[0-9]+", halfBaths) is None:
+            error.extend(["Please Enter a Valid Integer of Half Bathrooms"])
+        if re.search("[0-9]+", sqft) is None:
+            error.extend(["Please Enter a Valid Integer of Square Feet"])
+        if re.search("[0-9]+", zip) is None:
+            error.extend(["Please Enter a Valid Zip Code"])
         elif len(zip) > 5:
-            error = "Please Enter a Valid Zip Code"
+            error.extend(["Please Enter a Valid Zip Code"])
         elif len(zip) < 5:
-            error = "Please Enter a Valid Zip Code"
-        elif re.search("[0-9]+", yearBuilt) is None:
-            error = "Please Enter a Valid Year Built"
+            error.extend(["Please Enter a Valid Zip Code"])
+        if re.search("[0-9]+", yearBuilt) is None:
+            error.extend(["Please Enter a Valid Year Built"])
         elif int(yearBuilt) > currentYear:
-            error = "Please Enter a Valid Year Built"
-        elif re.search("[0-9]+", landValue) is None:
-            error = "Please Enter a Valid Integer of Land Value"
-        elif re.search("[0-9]+", buildingValue) is None:
-            error = "Please Enter a Valid Integer of Building Value"
-        elif re.search("[0-9]+", yearPurchased) is None:
-            error = "Please Enter a Valid Year Purchased"
+            error.extend(["Please Enter a Valid Year Built"])
+        if re.search("[0-9]+", landValue) is None:
+            error.extend(["Please Enter a Valid Integer of Land Value"])
+        if re.search("[0-9]+", buildingValue) is None:
+            error.extend(["Please Enter a Valid Integer of Building Value"])
+        if re.search("[0-9]+", yearPurchased) is None:
+            error.extend(["Please Enter a Valid Year Purchased"])
         elif int(yearPurchased) > int(currentYear):
-            error = "Please Enter a Valid Year Purchased"
+            error.extend(["Please Enter a Valid Year Purchased"])
         elif int(yearPurchased) > int(yearBuilt):
-            error = "The Year Built must be before the Year Purchased"
-        elif db.execute(
+            error.extend(["The Year Built must be before the Year Purchased"])
+        if db.execute(
             'SELECT address, zip_code FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
             (address, zip, session.get('user_id'))
         ).fetchone() is not None:
-            error = "This property is already in the Previously Owned table."
+            error.extend(["This property is already in the Previously Owned table."])
 
         #SQL to run if there is no error and the property doesn't already exist
-        if error is None:
+        if not error:
+            totalValue = int(landValue) + int(buildingValue)
             db.execute(
                 'INSERT INTO formerProperties (address, total_beds, bath, half_bath, living_sq_ft, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                 (address, beds, baths, halfBaths, sqft, zip, yearBuilt, landValue, buildingValue, totalValue, yearPurchased, session.get('user_id'), 1)
@@ -191,7 +197,8 @@ def table1():
             db.commit()
             print("successfully inserted into database")
 
-        print(error)
+        for eror in error:
+            flash(eror)
 
     return render_template('dashboard/tables.html')
 
