@@ -29,7 +29,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    #Importing Back-End Python files
+    #Importing the Back-End Python files
     from . import db
     db.init_app(app)
 
