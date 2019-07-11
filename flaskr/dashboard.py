@@ -40,8 +40,10 @@ def index():
             file = request.files['photo']
             extension = os.path.splitext(file.filename)[1]
             ALLOWED_EXTENSIONS = set(['.jpe', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.bmp'])
-             if extension not in ALLOWED_EXTENSIONS and file is not None:
-                 flash('Please Enter A Valid Photo Type ' + str(ALLOWED_EXTENSIONS))
+            if extension not in ALLOWED_EXTENSIONS and extension != '':
+                 flash('You submitted a ' + str(type(extension)) + ' file which is invalid. Please Enter A Valid Photo Type ' + str(ALLOWED_EXTENSIONS))
+            elif extension == '':
+                print("Do nothing")
             else:
                 f_name = str(uuid.uuid4()) + extension
                 app = create_app(None)
@@ -54,7 +56,7 @@ def index():
         error = None
         db = get_db()
 
-         if re.search(".+@.+", email) is None:
+        if re.search(".+@.+", email) is None:
             error = "Please Enter a Valid Email Address"
         elif re.search("[a-zA-Z ]+", firstName) is None:
             error = "Please Enter a Valid First Name"
@@ -117,7 +119,7 @@ def changePassword():
             error.extend(['Password must match.'])
         x = True;
         while x:
-            if not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
+            if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
                 error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
                 break
             else:
@@ -164,23 +166,15 @@ def table1():
             error.extend(["Please Enter a Valid Integer of Half Bathrooms"])
         if re.search("[0-9]+", sqft) is None:
             error.extend(["Please Enter a Valid Integer of Square Feet"])
-        if re.search("[0-9]+", zip) is None:
+        if re.search("[0-9]+", zip) is None or len(zip) > 5 or len(zip) < 5:
             error.extend(["Please Enter a Valid Zip Code"])
-        elif len(zip) > 5:
-            error.extend(["Please Enter a Valid Zip Code"])
-        elif len(zip) < 5:
-            error.extend(["Please Enter a Valid Zip Code"])
-        if re.search("[0-9]+", yearBuilt) is None:
-            error.extend(["Please Enter a Valid Year Built"])
-        elif int(yearBuilt) > currentYear:
+        if re.search("[0-9]+", yearBuilt) is None or int(yearBuilt) > currentYear:
             error.extend(["Please Enter a Valid Year Built"])
         if re.search("[0-9]+", landValue) is None:
             error.extend(["Please Enter a Valid Integer of Land Value"])
         if re.search("[0-9]+", buildingValue) is None:
             error.extend(["Please Enter a Valid Integer of Building Value"])
-        if re.search("[0-9]+", yearPurchased) is None:
-            error.extend(["Please Enter a Valid Year Purchased"])
-        elif int(yearPurchased) > int(currentYear):
+        if re.search("[0-9]+", yearPurchased) is None or int(yearPurchased) > int(currentYear):
             error.extend(["Please Enter a Valid Year Purchased"])
         elif int(yearPurchased) > int(yearBuilt):
             error.extend(["The Year Built must be before the Year Purchased"])

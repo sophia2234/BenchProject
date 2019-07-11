@@ -183,7 +183,7 @@
                                             <input type="yearPurchased" name="yearPurchased" id="yearPurchased"><br><br>
                                         </div>
                                     </div>
-                                    <input type="submit" value="Add Property" class="btn btn-primary">
+                                    <input type="submit" value="Add Property" class="btn btn-primary" onClick="savevalue()">
                                 </form>
                             </div>
                         </div>
@@ -319,6 +319,36 @@
   }
 });
 </script>
+ <script type="text/javascript">
+    function savevalue() {
+      localStorage.setItem("address", document.getElementById('address').value);
+      localStorage.setItem("beds", document.getElementById('beds').value);
+      localStorage.setItem("baths", document.getElementById('baths').value);
+      localStorage.setItem("halfBaths", document.getElementById('halfBaths').value);
+      localStorage.setItem("sqft", document.getElementById('sqft').value);
+
+      localStorage.setItem("zip", document.getElementById('zip').value);
+      localStorage.setItem("yearBuilt", document.getElementById('yearBuilt').value);
+      localStorage.setItem("landValue", document.getElementById('landValue').value);
+      localStorage.setItem("buildingValue", document.getElementById('buildingValue').value);
+      localStorage.setItem("yearPurchased", document.getElementById('yearPurchased').value);
+
+    }
+
+    window.onload = function() {
+      document.getElementById('address').value = localStorage.getItem("address");
+      document.getElementById('beds').value = localStorage.getItem("beds");
+      document.getElementById('baths').value = localStorage.getItem("baths");
+      document.getElementById('halfBaths').value = localStorage.getItem("halfBaths");
+      document.getElementById('zip').value = localStorage.getItem("zip");
+      document.getElementById('yearBuilt').value = localStorage.getItem("yearBuilt");
+      document.getElementById('landValue').value = localStorage.getItem("landValue");
+      document.getElementById('buildingValue').value = localStorage.getItem("buildingValue");
+      document.getElementById('yearPurchased').value = localStorage.getItem("yearPurchased");
+      document.getElementById('address').focus();
+    }
+
+  </script>
 </body>
 
 </html>
