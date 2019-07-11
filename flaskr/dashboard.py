@@ -40,8 +40,8 @@ def index():
             file = request.files['photo']
             extension = os.path.splitext(file.filename)[1]
             ALLOWED_EXTENSIONS = set(['.jpe', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.bmp'])
-            if extension not in ALLOWED_EXTENSIONS and request.FILES.get('photo') is None:
-                flash('Please Enter A Valid Photo Type')
+             if extension not in ALLOWED_EXTENSIONS and file is not None:
+                 flash('Please Enter A Valid Photo Type ' + str(ALLOWED_EXTENSIONS))
             else:
                 f_name = str(uuid.uuid4()) + extension
                 app = create_app(None)
@@ -54,13 +54,16 @@ def index():
         error = None
         db = get_db()
 
-        if re.search(".+@.+", email) is None:
+         if re.search(".+@.+", email) is None:
             error = "Please Enter a Valid Email Address"
-            print(error)
         elif re.search("[a-zA-Z ]+", firstName) is None:
             error = "Please Enter a Valid First Name"
         elif re.search("[a-zA-Z ]+", lastName) is None:
             error = "Please Enter a Valid Last Name"
+        if db.execute(
+            'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
+        ).fetchone():
+            error = None
         elif db.execute(
             'SELECT email FROM user WHERE email = ?', (email,)
         ).fetchone() is not None:
