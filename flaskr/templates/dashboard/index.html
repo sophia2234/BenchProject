@@ -27,11 +27,6 @@
 <body class="">
 <div class="main-panel">
     <!-- Keyot photo and Flash Messages (if applicable) -->
-    <div style="margin: 20px;">
-        {% for message in get_flashed_messages() %}
-            <p class="flash" style="font-weight: bold; font-size: 2em; line-height: 1.5">{{ message }}</p>
-        {% endfor %}
-    </div>
     <div class="logo">
         <img src="{{ url_for('static', filename='assets/img/Keyot-PropertyPicker.png') }}"
              style="max-height:40%; max-width:40%; padding: 15px" alt="Keyot">
