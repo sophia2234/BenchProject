@@ -313,7 +313,11 @@
             return false;
         }
     }
-
+    $(document).ready(function() { // When page finished loading
+  if ( $('.flash').length ) { // if there is an DOM that has class has-error
+     $('#addPropModal').modal('show'); // Show Modal
+  }
+});
 </script>
 </body>
 
