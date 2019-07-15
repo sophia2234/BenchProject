@@ -53,15 +53,15 @@ def index():
         except:
             photoUploaded = False
 
-        error = None
+        error = []
         db = get_db()
 
         if re.search(".+@.+", email) is None:
-            error = "Please Enter a Valid Email Address"
-        elif re.search("[a-zA-Z ]+", firstName) is None:
-            error = "Please Enter a Valid First Name"
-        elif re.search("[a-zA-Z ]+", lastName) is None:
-            error = "Please Enter a Valid Last Name"
+            error.extend(["Please Enter a Valid Email Address"])
+        if re.search("[a-zA-Z ]+", firstName) is None:
+            error.extend(["Please Enter a Valid First Name"])
+        if re.search("[a-zA-Z ]+", lastName) is None:
+            error.extend(["Please Enter a Valid Last Name"])
         if db.execute(
             'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
         ).fetchone():
@@ -69,11 +69,11 @@ def index():
         elif db.execute(
             'SELECT email FROM user WHERE email = ?', (email,)
         ).fetchone() is not None:
-            error = 'User with email address {} is already registered.'.format(email)
+            error.extend(['User with email address {} is already registered.'.format(email)])
 
 
         #SQL statements when Photo is uploaded
-        if error is None and photoUploaded:
+        if not error and photoUploaded:
 
             destination = db.execute(
                 'SELECT profilePicture FROM user WHERE firstName = ? AND email = ? AND userId = ?',
@@ -90,17 +90,20 @@ def index():
             print("successfully updated user")
 
         #SQL statements when Photo is not uploaded
-        elif error is None and not photoUploaded:
+        elif not error and not photoUploaded:
             db.execute(
             'UPDATE user SET email = ?, firstName = ? , lastName = ?, description = ? WHERE userId =? ', (email, firstName, lastName, description, session.get('user_id'))
             )
             db.commit()
             print("successfully updated user")
         else:
-            flash(error)
+            for eror in error:
+                flash(eror)
 
         return redirect(url_for('dashboard.index'))
 
+        for eror in error:
+            flash(eror)
 
     return render_template('dashboard/index.html')
 
