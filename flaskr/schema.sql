@@ -9,7 +9,7 @@ CREATE TABLE user (
   email TEXT NOT NULL COLLATE NOCASE,
   firstName TEXT NOT NULL,
   lastName TEXT NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   profilePicture TEXT NOT NULL
 );
 
@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS properties;
 CREATE TABLE properties(
    ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
   ,class          VARCHAR(10)
-  ,land_value     INTEGER  NOT NULL
+  ,land_value     INTEGER  NOT NULL 
   ,bldg_value     INTEGER  NOT NULL
   ,total_value    INTEGER  NOT NULL
   ,address        VARCHAR(32) NOT NULL

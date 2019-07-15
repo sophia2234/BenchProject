@@ -12,7 +12,7 @@ import re
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 # This method is called when a new user registers and renders register.html or redirects to
-# login page if user successfully registers
+# the login page if user successfully registers
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -51,7 +51,7 @@ def register():
 
         x = True; 
         while x:
-            if not re.search("((?=.*\d)(?=.*[a-zA-Z])(?=.*\W).{8,})", password):
+            if not re.search("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
                 error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
                 break
             else:
