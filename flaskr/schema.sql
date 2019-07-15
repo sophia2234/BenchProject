@@ -9,7 +9,7 @@ CREATE TABLE user (
   email TEXT NOT NULL COLLATE NOCASE,
   firstName TEXT NOT NULL,
   lastName TEXT NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   profilePicture TEXT NOT NULL
 );
 
