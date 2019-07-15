@@ -118,8 +118,6 @@ def changePassword():
         error = []
         db = get_db()
 
-        if password != passwordConfirmation:
-            error.extend(['Password must match.'])
         x = True;
         while x:
             if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
@@ -127,6 +125,8 @@ def changePassword():
                 break
             else:
                 x = False
+        if password != passwordConfirmation:
+            error.extend(['Password must match.'])
         else:
             db.execute(
             'UPDATE user SET password = ? WHERE userId = ?', (generate_password_hash(password), session.get('user_id'))
@@ -257,7 +257,7 @@ def addRow():
             )
             db.commit()
             print("Inserted Successfully")
-
+    deleteRow()
     return "Made it here in addRow()"
 
 
