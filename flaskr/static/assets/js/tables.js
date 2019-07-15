@@ -118,6 +118,7 @@ function addProperty(e) {
         url: url,
         data: JSON.stringify(jsonData),
         success: function(dataFromServer) {
+            refreshTable();
         },
         contentType: "application/json",
         dataType: 'text'
