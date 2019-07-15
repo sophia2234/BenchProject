@@ -176,7 +176,7 @@ def table1():
             error.extend(["Please Enter a Valid Integer of Building Value"])
         if re.search("[0-9]+", yearPurchased) is None or int(yearPurchased) > int(currentYear):
             error.extend(["Please Enter a Valid Year Purchased"])
-        elif int(yearPurchased) > int(yearBuilt):
+        elif int(yearPurchased) < int(yearBuilt):
             error.extend(["The Year Built must be before the Year Purchased"])
         if db.execute(
             'SELECT address, zip_code FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
