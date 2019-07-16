@@ -206,6 +206,10 @@ def table1():
 
     return render_template('dashboard/tables.html')
 
+#renders faq.html pagq
+@bp.route('/faq')
+def faq():
+    return render_template('dashboard/faq.html')
 
 #Renders tables_2.html
 @bp.route('/table2')

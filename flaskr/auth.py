@@ -52,7 +52,7 @@ def register():
         if not lastName:
             error.extend(['Last Name is required.'])
 
-        x = True; 
+        x = True
         while x:
             if not re.search("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
                 error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])

@@ -75,13 +75,15 @@
                 <i class="material-icons">person</i>
                 <p>User Profile</p>
             </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
+                    <i class="material-icons">help_outline</i>
+                    <p>F.A.Q.</p>
+                </a>
 
             <a class="nav-link" href="{{ url_for('auth.logout') }}">
                 <i class="material-icons">person</i>
                 <p>Log out</p>
             </a>
-
-
         </div>
     </nav>
     <!-- End Navbar -->
