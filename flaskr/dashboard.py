@@ -1,10 +1,7 @@
-''''
-DASHBOARD PAGE: This page starts an HTML INDEX page, has new REGISTRATION page [with validation], deals with SQL photo upload [success and fail]
-password UPDATE [with validation and error messages], deals with PREVIOUSLY OWNED properties with a WEB FORM [with validation], renders 
-TABLE_2, uses ADD button to add properties to table, DELETES property from table [***BUT NOT FROM RECOMMENDED***], add PREVIOUSLY OWNED 
-properties to a display table, and has the AI CODE [at the end]
-
-''''
+#DASHBOARD PAGE: This page starts an HTML INDEX page, has new REGISTRATION page [with validation], deals with SQL photo upload [success and fail]
+#password UPDATE [with validation and error messages], deals with PREVIOUSLY OWNED properties with a WEB FORM [with validation], renders 
+#TABLE_2, uses ADD button to add properties to table, DELETES property from table [***BUT NOT FROM RECOMMENDED***], add PREVIOUSLY OWNED 
+#properties to a display table, and has the AI CODE [at the end]
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify, session, Flask
 )
@@ -125,7 +122,7 @@ def changePassword():
         error = []
         db = get_db()
 
-        x = True;
+        x = True
         while x:
             if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
                 error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])

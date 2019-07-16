@@ -1,7 +1,5 @@
-''''
-INIT PAGE: This page is the initialization of the app/website, configures app and profile picture and 
-imports backend Python files, initializes database, and imports auth.py page and dashboard.py page
-''''
+#INIT PAGE: This page is the initialization of the app/website, configures app and profile picture and 
+#imports backend Python files, initializes database, and imports auth.py page and dashboard.py page
 
 import os
 

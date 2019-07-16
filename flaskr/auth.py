@@ -1,9 +1,6 @@
-''''
-AUTH PAGE: This page is for new user REGISTRATION and validation [with error displays], displays LOGIN page
-[with registered users and successful new registered users] with validation, redirects user to RECCOMMENDED page,
-starts session data for user, logouts user [if needed] and redirects to LOGIN page, and redirects non-logged in user to LOGIN page
-''''
-
+#AUTH PAGE: This page is for new user REGISTRATION and validation [with error displays], displays LOGIN page
+#[with registered users and successful new registered users] with validation, redirects user to RECCOMMENDED page,
+#starts session data for user, logouts user [if needed] and redirects to LOGIN page, and redirects non-logged in user to LOGIN page
 import functools
 
 from flask import (
