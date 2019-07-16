@@ -1,7 +1,7 @@
-#DASHBOARD PAGE: This page starts an HTML INDEX page, has new REGISTRATION page [with validation], deals with SQL photo upload [success and fail]
-#password UPDATE [with validation and error messages], deals with PREVIOUSLY OWNED properties with a WEB FORM [with validation], renders 
-#TABLE_2, uses ADD button to add properties to table, DELETES property from table [***BUT NOT FROM RECOMMENDED***], add PREVIOUSLY OWNED 
-#properties to a display table, and has the AI CODE [at the end]
+# DASHBOARD PAGE: This page starts an HTML INDEX page, has new REGISTRATION page [with validation], deals with SQL photo upload [success and fail]
+# password UPDATE [with validation and error messages], deals with PREVIOUSLY OWNED properties with a WEB FORM [with validation], renders
+# TABLE_2, uses ADD button to add properties to table, DELETES property from table [***BUT NOT FROM RECOMMENDED***], add PREVIOUSLY OWNED
+# properties to a display table, and has the AI CODE [at the end]
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify, session, Flask
 )
@@ -26,7 +26,6 @@ import uuid
 import os
 import datetime
 
-
 bp = Blueprint('dashboard', __name__)
 
 
@@ -45,7 +44,9 @@ def index():
             extension = os.path.splitext(file.filename)[1]
             ALLOWED_EXTENSIONS = set(['.jpe', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.bmp'])
             if extension not in ALLOWED_EXTENSIONS and extension != '':
-                 flash('You submitted a ' + str(type(extension)) + ' file which is invalid. Please Enter A Valid Photo Type ' + str(ALLOWED_EXTENSIONS))
+                flash('You submitted a ' + str(
+                    type(extension)) + ' file which is invalid. Please Enter A Valid Photo Type ' + str(
+                    ALLOWED_EXTENSIONS))
             elif extension == '':
                 print("Do nothing")
             else:
@@ -57,26 +58,24 @@ def index():
         except:
             photoUploaded = False
 
-        error = [] ###################################################################
+        error = []
         db = get_db()
-
-        if re.search(".+@.+", email) is None:
-            error.extend(["Please Enter a Valid Email Address"])
         if re.search("[a-zA-Z ]+", firstName) is None:
             error.extend(["Please Enter a Valid First Name"])
+        if re.search(".+@.+", email) is None:
+            error.extend(["Please Enter a Valid Email Address"])
         if re.search("[a-zA-Z ]+", lastName) is None:
             error.extend(["Please Enter a Valid Last Name"])
-        if db.execute(
-            'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
-        ).fetchone():
-            error = None
         elif db.execute(
-            'SELECT email FROM user WHERE email = ?', (email,)
+                'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
+        ).fetchone():
+            error = []
+        elif db.execute(
+                'SELECT email FROM user WHERE email = ?', (email,)
         ).fetchone() is not None:
             error.extend(['User with email address {} is already registered.'.format(email)])
 
-
-        #SQL statements when Photo is uploaded
+        # SQL statements when Photo is uploaded
         if not error and photoUploaded:
 
             destination = db.execute(
@@ -88,31 +87,33 @@ def index():
                 os.remove('flaskr/static/' + str(destination[0]))
 
             db.execute(
-            'UPDATE user SET email = ?, firstName = ? , lastName = ?, description = ?, profilePicture = ? WHERE userId =? ', (email, firstName, lastName, description, location, session.get('user_id'))
+                'UPDATE user SET email = ?, firstName = ? , lastName = ?, description = ?, profilePicture = ? WHERE userId =? ',
+                (email, firstName, lastName, description, location, session.get('user_id'))
             )
             db.commit()
             print("successfully updated user")
 
-        #SQL statements when Photo is not uploaded
+        # SQL statements when Photo is not uploaded
         elif not error and not photoUploaded:
             db.execute(
-            'UPDATE user SET email = ?, firstName = ? , lastName = ?, description = ? WHERE userId =? ', (email, firstName, lastName, description, session.get('user_id'))
+                'UPDATE user SET email = ?, firstName = ? , lastName = ?, description = ? WHERE userId =? ',
+                (email, firstName, lastName, description, session.get('user_id'))
             )
             db.commit()
             print("successfully updated user")
         else:
-            for error in error:
-                flash(error)
+            for eror in error:
+                flash(eror, 'success')
 
         return redirect(url_for('dashboard.index'))
 
-        for error in error:
-            flash(error)
+        for eror in error:
+            flash(eror, 'success')
 
     return render_template('dashboard/index.html')
 
 
-#Method that is called when users want to change their password on index.html page
+# Method that is called when users want to change their password on index.html page
 @bp.route('/changepassword', methods=('GET', 'POST'))
 @login_required
 def changePassword():
@@ -122,10 +123,11 @@ def changePassword():
         error = []
         db = get_db()
 
-        x = True
+        x = True;
         while x:
             if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
-                error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+                error.extend([
+                                 "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
                 break
             else:
                 x = False
@@ -133,13 +135,14 @@ def changePassword():
             error.extend(['Password must match.'])
         else:
             db.execute(
-            'UPDATE user SET password = ? WHERE userId = ?', (generate_password_hash(password), session.get('user_id'))
+                'UPDATE user SET password = ? WHERE userId = ?',
+                (generate_password_hash(password), session.get('user_id'))
             )
             db.commit()
             return redirect(url_for('dashboard.index'))
 
         for eror in error:
-            flash(eror)
+            flash(eror, 'error')
 
     return render_template('dashboard/index.html')
 
@@ -186,17 +189,18 @@ def table1():
         elif int(yearPurchased) < int(yearBuilt):
             error.extend(["The Year Built must be before the Year Purchased"])
         if db.execute(
-            'SELECT address, zip_code FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
-            (address, zip, session.get('user_id'))
+                'SELECT address, zip_code FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip, session.get('user_id'))
         ).fetchone() is not None:
             error.extend(["This property is already in the Previously Owned table."])
 
-        #SQL to run if there is no error and the property doesn't already exist
+        # SQL to run if there is no error and the property doesn't already exist
         if not error:
             totalValue = int(landValue) + int(buildingValue)
             db.execute(
                 'INSERT INTO formerProperties (address, total_beds, bath, half_bath, living_sq_ft, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                (address, beds, baths, halfBaths, sqft, zip, yearBuilt, landValue, buildingValue, totalValue, yearPurchased, session.get('user_id'), 1)
+                (address, beds, baths, halfBaths, sqft, zip, yearBuilt, landValue, buildingValue, totalValue,
+                 yearPurchased, session.get('user_id'), 1)
             )
             db.commit()
             print("successfully inserted into database")
@@ -207,11 +211,12 @@ def table1():
     return render_template('dashboard/tables.html')
 
 
-#Renders tables_2.html
+# Renders tables_2.html
 @bp.route('/table2')
 @login_required
 def table2():
     return render_template('dashboard/tables_2.html')
+
 
 # Adds property to previously owned through the "Add" button on tables_2.html
 @bp.route('/table1/add', methods=('GET', 'POST'))
@@ -245,19 +250,22 @@ def addRow():
         price = jsonData['price']
         grade = jsonData['grade']
 
-
         if db.execute(
-            'SELECT * FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?', (address, zip_code, session.get('user_id'))
+                'SELECT * FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
         ).fetchone() is not None:
             db.execute(
-                'UPDATE formerProperties SET like_dislike = 1 WHERE address = ? AND zip_code = ? AND userId = ?', (address, zip_code, session.get('user_id'))
+                'UPDATE formerProperties SET like_dislike = 1 WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
             )
             db.commit()
             print("Updated Successfully")
         else:
             db.execute(
                 'INSERT INTO formerProperties(class,land_value,bldg_value,total_value,address,address_city,zip_code,owner,school_dist,land_sq_ft,year_built,living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,basement_beds,total_beds,attached_gar,price,grade,like_dislike,userID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
-                (class1, land_value, bldg_value, total_value, address, address_city, zip_code, owner, school_dist, land_sq_ft, year_built, living_sq_ft, condition, residence_type, building_style, bath, half_bath, bedrooms, basement_beds, total_beds, attached_gar, price, grade, 1, session.get('user_id'))
+                (class1, land_value, bldg_value, total_value, address, address_city, zip_code, owner, school_dist,
+                 land_sq_ft, year_built, living_sq_ft, condition, residence_type, building_style, bath, half_bath,
+                 bedrooms, basement_beds, total_beds, attached_gar, price, grade, 1, session.get('user_id'))
             )
             db.commit()
             print("Inserted Successfully")
@@ -273,7 +281,8 @@ def delete_table1_row():
         jsonData = request.get_json()
         address = jsonData['address']
         zip_code = jsonData['zip_code']
-        db.execute('DELETE FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?', (address, zip_code, session.get('user_id')))
+        db.execute('DELETE FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                   (address, zip_code, session.get('user_id')))
         db.commit()
         print("Deleted Successfully")
 
@@ -287,7 +296,7 @@ def sendProperties():
     query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id'))
     data = pd.read_sql_query(query, db)
     data.sort_values(by=["year_purchased"])
-    jsonData = data.to_json(orient = "records")
+    jsonData = data.to_json(orient="records")
     return jsonData
 
 
@@ -327,10 +336,12 @@ def deleteRow():
 
         # If property is already in model, set it to "disliked"
         if db.execute(
-            'SELECT * FROM properties WHERE address = ? AND zip_code = ? AND userId = ?', (address, zip_code, session.get('user_id'))
+                'SELECT * FROM properties WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
         ).fetchone() is not None:
             db.execute(
-                'UPDATE properties SET like_dislike = 0 WHERE address = ? AND zip_code = ? AND userId = ?', (address, zip_code, session.get('user_id'))
+                'UPDATE properties SET like_dislike = 0 WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
             )
             db.commit()
             return "Updated Successfully"
@@ -339,18 +350,19 @@ def deleteRow():
         else:
             db.execute(
                 'INSERT INTO properties(class,land_value,bldg_value,total_value,address,address_city,zip_code,owner,school_dist,land_sq_ft,year_built,living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,basement_beds,total_beds,attached_gar,price,grade,like_dislike,userID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
-                (class1, land_value, bldg_value, total_value, address, address_city, zip_code, owner, school_dist, land_sq_ft, year_built, living_sq_ft, condition, residence_type, building_style, bath, half_bath, bedrooms, basement_beds, total_beds, attached_gar, price, grade, 0, session.get('user_id'))
+                (class1, land_value, bldg_value, total_value, address, address_city, zip_code, owner, school_dist,
+                 land_sq_ft, year_built, living_sq_ft, condition, residence_type, building_style, bath, half_bath,
+                 bedrooms, basement_beds, total_beds, attached_gar, price, grade, 0, session.get('user_id'))
             )
             db.commit()
             return "Inserted Successfully"
 
     return "Made it here in deleteRow()"
 
+
 # AI Function that sends Recommended Properties to tables_2.html
 @bp.route('/table2/recommended', methods=('GET', 'POST'))
 def sendRecommended():
-
-
     db = get_db()
     query = "SELECT * FROM properties WHERE userId = %s" % (session.get('user_id'))
     # import the training data- houses that have previously been liked or disliked by the user in properties tables
@@ -360,60 +372,47 @@ def sendRecommended():
 
     # set up the data to train the system
     labels = train_data['like_dislike']
-    train1 = train_data.drop(['ID', 'class', 'address', 'address_city', 'zip_code', 'owner', 'school_dist', 'land_sq_ft', 'residence_type', 'building_style', 'condition', 'bedrooms', 'basement_beds', 'attached_gar', 'grade', 'like_dislike', 'price', 'userId'],axis=1)
+    train1 = train_data.drop(
+        ['ID', 'class', 'address', 'address_city', 'zip_code', 'owner', 'school_dist', 'land_sq_ft', 'residence_type',
+         'building_style', 'condition', 'bedrooms', 'basement_beds', 'attached_gar', 'grade', 'like_dislike', 'price',
+         'userId'], axis=1)
     train1.head()
     from sklearn.model_selection import train_test_split
 
-
-    #Configuring the machine to learn
-    x_train , x_test , y_train , y_test = train_test_split(train1 , labels , test_size = 0.10,random_state =1)
+    # Configuring the machine to learn
+    x_train, x_test, y_train, y_test = train_test_split(train1, labels, test_size=0.10, random_state=1)
 
     from sklearn import ensemble
-    clf = ensemble.GradientBoostingClassifier(n_estimators = 1000, max_depth = 10, min_samples_split = 2,
-              learning_rate = 0.2)
-
+    clf = ensemble.GradientBoostingClassifier(n_estimators=1000, max_depth=10, min_samples_split=2,
+                                              learning_rate=0.2)
 
     # train the model
     clf.fit(x_train, y_train)
 
-
     # test how well the model learned
-    clf.score(x_test,y_test)
-
+    clf.score(x_test, y_test)
 
     # read in the dataset of houses
     data = pd.read_csv("flaskr/house_data.csv")
-    x_predict = data.drop(['ID', 'class', 'address', 'address_city', 'zip_code', 'owner', 'school_dist', 'land_sq_ft', 'residence_type', 'building_style', 'condition', 'bedrooms', 'basement_beds', 'attached_gar', 'grade', 'like_dislike', 'price'],axis=1)
-
+    x_predict = data.drop(
+        ['ID', 'class', 'address', 'address_city', 'zip_code', 'owner', 'school_dist', 'land_sq_ft', 'residence_type',
+         'building_style', 'condition', 'bedrooms', 'basement_beds', 'attached_gar', 'grade', 'like_dislike', 'price'],
+        axis=1)
 
     # predict if dataset houses should be liked or disliked
     prediction = clf.predict(x_predict)
-
 
     # put predictions into the dataset
     prediction.tolist()
     data['like_dislike'] = prediction
 
-
     # create new dataset with only liked houses
     output_data = data[data.like_dislike != 0]
-
 
     # Sort the output data
     output_data.sort_values(by=["ID"])
 
-
     # convert new dataset to json
-    json_file = output_data.to_json(orient = "records")
+    json_file = output_data.to_json(orient="records")
 
     return json_file
-
-
-
-
-
-
-
-
-
-
