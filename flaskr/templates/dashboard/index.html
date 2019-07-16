@@ -195,7 +195,12 @@
                     </div>
                     <div class="modal-body">
                         <form method="POST" enctype="multipart/form-data">
-
+                            <div style="margin: 20px;">
+                                {% for message in get_flashed_messages(category_filter=["success"]) %}
+                                    <p class="flashed"
+                                       style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
+                                {% endfor %}
+                            </div>
                             <label for="email">Email: </label>
                             <input style="width:60%; max-width:70%;max-height:40%;" name="email" id="email"
                                    value="{{ g.user['email'] }}" ><br><br>
@@ -239,7 +244,7 @@
                     <div class="modal-body">
                         <form method="post" action="/changepassword">
                             <div style="margin: 20px;">
-                                {% for message in get_flashed_messages() %}
+                                {% for message in get_flashed_messages(category_filter=["error"]) %}
                                     <p class="flash"
                                        style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
                                 {% endfor %}
@@ -378,6 +383,7 @@
 #}
 <script>
     function myFunction() {
+        <!--   relates to the navbar using flex-box to hamburger   -->
         var x = document.getElementById("burger");
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
@@ -387,6 +393,7 @@
 
     }
 
+    <!--   Confirms logout when clicked in navbar   -->
     function logoutConfirmationWindow() {
         var confirm = window.confirm("Are you sure you want to log out?");
         if (confirm) {
@@ -395,7 +402,7 @@
             return false;
         }
     }
-
+    <!--   Grabs the profile pic from local storage   -->
     var url = "{{g.user['profilePicture']}}";
     var urlStatic = "{{url_for('static', filename='')}}";
     var source = urlStatic + url;
@@ -403,10 +410,16 @@
     document.getElementById("profilePicture").src = source;
 
 </script>
+<!--   Loads the modals if error shows  -->
 <script>
     $(document).ready(function() { // When page finished loading
   if ( $('.flash').length ) { // if there is an DOM that has class has-error
      $('#changePasswordModal').modal('show'); // Show Modal
+  }
+});
+      $(document).ready(function() { // When page finished loading
+  if ( $('.flashed').length ) { // if there is an DOM that has class has-error
+     $('#editModal').modal('show'); // Show Modal
   }
 });
 </script>
