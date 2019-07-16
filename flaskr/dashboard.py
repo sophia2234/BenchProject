@@ -1,3 +1,10 @@
+''''
+DASHBOARD PAGE: This page starts an HTML INDEX page, has new REGISTRATION page [with validation], deals with SQL photo upload [success and fail]
+password UPDATE [with validation and error messages], deals with PREVIOUSLY OWNED properties with a WEB FORM [with validation], renders 
+TABLE_2, uses ADD button to add properties to table, DELETES property from table [***BUT NOT FROM RECOMMENDED***], add PREVIOUSLY OWNED 
+properties to a display table, and has the AI CODE [at the end]
+
+''''
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify, session, Flask
 )
@@ -53,7 +60,7 @@ def index():
         except:
             photoUploaded = False
 
-        error = []
+        error = [] ###################################################################
         db = get_db()
 
         if re.search(".+@.+", email) is None:
@@ -97,13 +104,13 @@ def index():
             db.commit()
             print("successfully updated user")
         else:
-            for eror in error:
-                flash(eror)
+            for error in error:
+                flash(error)
 
         return redirect(url_for('dashboard.index'))
 
-        for eror in error:
-            flash(eror)
+        for error in error:
+            flash(error)
 
     return render_template('dashboard/index.html')
 
@@ -341,8 +348,6 @@ def deleteRow():
             return "Inserted Successfully"
 
     return "Made it here in deleteRow()"
-
-
 
 # AI Function that sends Recommended Properties to tables_2.html
 @bp.route('/table2/recommended', methods=('GET', 'POST'))
