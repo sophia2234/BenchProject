@@ -206,6 +206,10 @@ def table1():
 def table2():
     return render_template('dashboard/tables_2.html')
 
+@bp.route('/homePage')
+def homePage():
+	return render_template('dashboard/homePage.html')
+
 # Adds property to previously owned through the "Add" button on tables_2.html
 @bp.route('/table1/add', methods=('GET', 'POST'))
 def addRow():
