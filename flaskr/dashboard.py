@@ -69,7 +69,8 @@ def index():
         elif db.execute(
                 'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
         ).fetchone():
-            error = []
+            error is None
+#            error = []
         elif db.execute(
                 'SELECT email FROM user WHERE email = ?', (email,)
         ).fetchone() is not None:
