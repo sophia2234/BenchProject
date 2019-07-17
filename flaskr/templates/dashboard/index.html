@@ -54,6 +54,10 @@
                 <i class="material-icons">person</i>
                 <p>User Profile</p>
             </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.homepage') }}">
+                <i class="material-icons">home</i>
+                <p>Homepage</p>
+            </a>
             <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()"
                href="{{ url_for('auth.logout') }}">
                 <i class="material-icons">person</i>
@@ -75,7 +79,10 @@
                 <i class="material-icons">person</i>
                 <p>User Profile</p>
             </a>
-
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.homepage') }}">
+                <i class="material-icons">home</i>
+                <p>Homepage</p>
+            </a>
             <a class="nav-link" href="{{ url_for('auth.logout') }}">
                 <i class="material-icons">person</i>
                 <p>Log out</p>
@@ -194,7 +201,7 @@
                             <span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data" action="updateProfile">
                             <div style="margin: 20px;">
                                 {% for message in get_flashed_messages(category_filter=["success"]) %}
                                     <p class="flashed"

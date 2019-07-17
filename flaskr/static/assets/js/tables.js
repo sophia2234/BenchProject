@@ -113,16 +113,19 @@ function addProperty(e) {
    }
 
     var url = "table1/add";
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: JSON.stringify(jsonData),
-        success: function(dataFromServer) {
-            refreshTable();
-        },
-        contentType: "application/json",
-        dataType: 'text'
-    });
+    var confirm = window.confirm("Are you sure you want to delete?");
+    if(confirm) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(jsonData),
+            success: function (dataFromServer) {
+                refreshTable();
+            },
+            contentType: "application/json",
+            dataType: 'text'
+        });
+    }
 }
 
 // Clears the recommended table and repopulates
