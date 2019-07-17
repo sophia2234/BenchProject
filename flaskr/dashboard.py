@@ -30,7 +30,7 @@ bp = Blueprint('dashboard', __name__)
 
 
 # Method that renders index.html and handles all POST requests from index.html
-@bp.route('/', methods=('GET', 'POST'))
+@bp.route('/updateProfile', methods=('GET', 'POST'))
 @login_required
 def index():
     if request.method == 'POST':
@@ -359,6 +359,12 @@ def deleteRow():
             return "Inserted Successfully"
 
     return "Made it here in deleteRow()"
+
+
+# Method that renders homepage.html
+@bp.route('/')
+def homepage():
+    return render_template('dashboard/homepage.html')
 
 
 # AI Function that sends Recommended Properties to tables_2.html
