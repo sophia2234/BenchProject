@@ -40,47 +40,54 @@
     </div>
 
     <!-- Navbar -->
-    <nav>
-        <div class="w3-bar">
-            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
+        <nav>
+            <div class="w3-bar">
+                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Recommended Properties</p>
+                </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Recommended Properties</p>
-            </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
-            <i class="material-icons">content_paste</i>
-            <p>Previously Owned</p>
-        </a>
-            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
+                <p>Previously Owned</p>
             </a>
-            <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()"
-               href="{{ url_for('auth.logout') }}">
-                <i class="material-icons">person</i>
-                <p>Log out</p>
-            </a>
-            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
-               onclick="myFunction()">&#9776;</a>
-        </div>
-        <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
-            <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
+                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
+                </a>
+                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
+                        <i class="material-icons">help_outline</i>
+                        <p>F.A.Q.</p>
+                    </a>
+                <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()" href="{{ url_for('auth.logout') }}">
+                    <i class="material-icons">person</i>
+                    <p>Log out</p>
+                </a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
+                   onclick="myFunction()">&#9776;</a>
+            </div>
+            <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
+                <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Recommended Properties</p>
+                </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Recommended Properties</p>
-            </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
-            <i class="material-icons">content_paste</i>
-            <p>Previously Owned</p>
-        </a>
-            <a class="nav-link" href="{{ url_for('dashboard.index') }}">
-                <i class="material-icons">person</i>
-                <p>User Profile</p>
+                <p>Previously Owned</p>
             </a>
+                <a class="nav-link" href="{{ url_for('dashboard.index') }}">
+                    <i class="material-icons">person</i>
+                    <p>User Profile</p>
+                </a>
+                <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
+                    <i class="material-icons">help_outline</i>
+                    <p>F.A.Q.</p>
+                </a>
 
-            <a class="nav-link" href="{{ url_for('auth.logout') }}">
-                <i class="material-icons">person</i>
-                <p>Log out</p>
-            </a>
-        </div>
-    </nav>
-    <!-- End Navbar -->
+                <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                    <i class="material-icons">person</i>
+                    <p>Log out</p>
+                </a>
+            </div>
+        </nav>
+      <!-- End Navbar -->
 
     <div class="content">
         <div class="container-fluid">
