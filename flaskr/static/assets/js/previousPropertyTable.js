@@ -1,9 +1,10 @@
-
+import simp
 displayTable();
 
 // This dynamically populates the previously owned table
 function displayTable(){
     var url = "table1/previousProperties";
+    jsonResult=JSONResult 
 
      $.getJSON(url, null, function (jsonResult) {
      	if (jsonResult.length > 0){
