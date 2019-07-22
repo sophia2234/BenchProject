@@ -366,6 +366,10 @@ def deleteRow():
 def homepage():
     return render_template('dashboard/homepage.html')
 
+# Method that renders faq.html
+@bp.route('/faq')
+def faq():
+    return render_template('dashboard/faq.html')
 
 # AI Function that sends Recommended Properties to tables_2.html
 @bp.route('/table2/recommended', methods=('GET', 'POST'))

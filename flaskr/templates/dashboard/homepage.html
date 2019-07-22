@@ -32,7 +32,7 @@
 <div class="main-panel">
     <!-- Keyot photo and Flash Messages (if applicable) -->
     <div class="logo">
-        <img src="{{ url_for('static', filename='assets/img/cropped-Keyot-Logo copy.jpg') }}"
+        <img src="{{ url_for('static', filename='assets/img/Keyot-PropertyPicker.png') }}"
              style="max-height:40%; max-width:40%; padding: 15px" alt="Keyot">
     </div>
 
@@ -43,6 +43,10 @@
                 <i class="material-icons">home</i>
                 <p>Homepage</p>
             </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
+                        <i class="material-icons">help_outline</i>
+                        <p>F.A.Q.</p>
+                    </a>
             <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}" style="float:right">
                 <i class="material-icons">person</i>
                 <p>Sign In</p>
@@ -56,6 +60,10 @@
                 <i class="material-icons">home</i>
                 <p>Homepage</p>
             </a>
+            <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
+                    <i class="material-icons">help_outline</i>
+                    <p>F.A.Q.</p>
+                </a>
             <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
                 <i class="material-icons">person</i>
                 <p>Sign In</p>
