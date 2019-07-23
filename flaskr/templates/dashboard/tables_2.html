@@ -40,56 +40,175 @@
     </div>
 
     <!-- Navbar -->
-        <nav>
-            <div class="w3-bar">
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Recommended Properties</p>
-                </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
+    <nav>
+        <div class="w3-bar">
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Previously Owned</p>
+                <p>Recommended Properties</p>
+            </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
+            <i class="material-icons">content_paste</i>
+            <p>Previously Owned</p>
+        </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
+                <i class="material-icons">person</i>
+                <p>User Profile</p>
             </a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
-                        <i class="material-icons">help_outline</i>
-                        <p>F.A.Q.</p>
-                    </a>
-                <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()" href="{{ url_for('auth.logout') }}">
-                    <i class="material-icons">person</i>
-                    <p>Log out</p>
-                </a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
-                   onclick="myFunction()">&#9776;</a>
-            </div>
-            <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
-                <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Recommended Properties</p>
-                </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
+                <i class="material-icons">help_outline</i>
+                <p>F.A.Q.</p>
+            </a>
+            <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()"
+               href="{{ url_for('auth.logout') }}">
+                <i class="material-icons">person</i>
+                <p>Log out</p>
+            </a>
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
+               onclick="myFunction()">&#9776;</a>
+        </div>
+        <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
+            <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Previously Owned</p>
+                <p>Recommended Properties</p>
+            </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
+            <i class="material-icons">content_paste</i>
+            <p>Previously Owned</p>
+        </a>
+            <a class="nav-link" href="{{ url_for('dashboard.index') }}">
+                <i class="material-icons">person</i>
+                <p>User Profile</p>
             </a>
-                <a class="nav-link" href="{{ url_for('dashboard.index') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-                <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
-                    <i class="material-icons">help_outline</i>
-                    <p>F.A.Q.</p>
-                </a>
+            <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
+                <i class="material-icons">help_outline</i>
+                <p>F.A.Q.</p>
+            </a>
 
-                <a class="nav-link" href="{{ url_for('auth.logout') }}">
-                    <i class="material-icons">person</i>
-                    <p>Log out</p>
-                </a>
-            </div>
-        </nav>
-      <!-- End Navbar -->
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                <i class="material-icons">person</i>
+                <p>Log out</p>
+            </a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
 
     <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="pieID pie">
+
+                    </div>
+                    <ul class="pieID legend">
+                        <li>
+                            <em>Ranch</em>
+                            <span>718</span>
+                        </li>
+                        <li>
+                            <em>Conventional</em>
+                            <span>531</span>
+                        </li>
+                        <li>
+                            <em>Townhouse</em>
+                            <span>868</span>
+                        </li>
+                        <li>
+                            <em>Bungalow</em>
+                            <span>344</span>
+                        </li>
+                        <li>
+                            <em>Mobile</em>
+                            <span>1145</span>
+                        </li>
+                        <li>
+                            <em>4-Split</em>
+                            <span>145</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <form method="post">
+                        <div style="margin: 20px;">
+                            {% for message in get_flashed_messages() %}
+                                <p class="flash"
+                                   style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="year-purchase">Filter By Year Purchase: </label>
+                                <input name="year-purchase" id="year-purchase"><br><br>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="year-sold">Filter By Year Sold: </label>
+                                <input type="year-sold" name="year-sold" id="year-sold"><br><br>
+                            </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="building-style">Filter By Property Type: </label>
+                            <select name="building-style">
+                                <option value="ranch">Ranch</option>
+                                <option value="conventional">Conventional</option>
+                                <option value="townhouse">Townhouse</option>
+                                <option value="bungalow">Bungalow</option>
+                                <option value="audi">Mobile-Homes</option>
+                                <option value="4-split">4 Split</option>
+                            </select>
+                        </div>
+                             </div>
+                        <input type="submit" value="Filter" class="btn btn-primary" onClick="savevalue()">
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title ">Total Invested Amount: $500000</h4>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title ">Number of Houses Brought: 26</h4>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title ">Number of Houses Sold: 3</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+
+                        <!-- Recommended property table -->
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Transaction Summary</h4>
+                                <p class="card-category">Here are some homes that you currently own:</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table" id="ownedPropertyDataTable">
+                                        <thead class=" text-primary">
+                                        <th>Address</th>
+                                        <th>Type</th>
+                                        <th>Beds</th>
+                                        <th>Baths</th>
+                                        <th>Year Brought</th>
+                                        <th>Purchase Amount</th>
+                                        <th>Year Sold</th>
+                                        <th>Sold Amount</th>
+                                        <th>Net Profit</th>
+                                        </thead>
+                                        <tbody>
+                                        <!-- Dynamically Updates table body in tables.js -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -125,142 +244,204 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Map Pop-up -->
-    <div class="modal fade bd-map-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Location</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div id="map" style=" max-height: 100%; max-weight: 100%;"></div>
+        <!-- Map Pop-up -->
+        <div class="modal fade bd-map-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Location</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map" style=" max-height: 100%; max-weight: 100%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <nav class="float-left">
-                <ul>
-                    <li>
-                        <a href="https://keyot.com">
-                            Learn More About Keyot
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright float-right">
-                <img src="{{ url_for('static', filename='assets/img/favicon.png') }}"" style="max-height:40%;
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="float-left">
+                    <ul>
+                        <li>
+                            <a href="https://keyot.com">
+                                Learn More About Keyot
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright float-right">
+                    <img src="{{ url_for('static', filename='assets/img/favicon.png') }}" style="max-height:40%;
                 max-width:40%;" alt="Keyot">
+                </div>
             </div>
-        </div>
-    </footer>
-</div>
+        </footer>
+    </div>
 
-<!--   Map API Script  -->
-<script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSIgQOE8qkbnu2eHzFNlvvFtSADlf2eas"></script>
+    <!--   Map API Script  -->
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSIgQOE8qkbnu2eHzFNlvvFtSADlf2eas"></script>
 
-<!--   Core JS Files   -->
-<script src="{{ url_for('static', filename='assets/js/tables.js') }}" type="text/javascript"></script>
-<script src="{{ url_for('static', filename='assets/js/core/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}"></script>
-<script src="{{ url_for('static', filename='assets/js/core/bootstrap-material-design.min.js') }}"></script>
-<script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-<!-- Plugin for the momentJs  -->
-<script src="{{ url_for('static', filename='assets/js/plugins/moment.min.js') }}"></script>
-<!--  Plugin for Sweet Alert -->
-<script src="{{ url_for('static', filename='assets/js/plugins/sweetalert2.js') }}"></script>
-<!-- Forms Validations Plugin -->
-<script src="{{ url_for('static', filename='assets/js/plugins/jquery.validate.min.js') }}"></script>
-<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-<script src="{{ url_for('static', filename='assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
-<!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-<script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-selectpicker.js') }}"></script>
-<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-<script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
-<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="{{ url_for('static', filename='assets/js/plugins/jquery.dataTables.min.js') }}"></script>
-<!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-<script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
-<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-<script src="{{ url_for('static', filename='assets/js/plugins/jasny-bootstrap.min.js') }}"></script>
-<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-<script src="{{ url_for('static', filename='assets/js/plugins/fullcalendar.min.js') }}"></script>
-<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src="{{ url_for('static', filename='assets/js/plugins/jquery-jvectormap.js') }}"></script>
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="{{ url_for('static', filename='assets/js/plugins/nouislider.min.js') }}"></script>
-<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-<!-- Library for adding dinamically elements -->
-<script src="{{ url_for('static', filename='assets/js/plugins/arrive.min.js') }}"></script>
-<!-- Chartist JS -->
-<script src="{{ url_for('static', filename='assets/js/plugins/chartist.min.js') }}"></script>
-<!--  Notifications Plugin    -->
-<script src="{{ url_for('static', filename='assets/js/plugins/nouislider.min.js') }}"></script>
-<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{ url_for('static', filename='assets/js/material-dashboard.js') }}" type="text/javascript"></script>
-<!--?v=2.1.1-->
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
+    <!--   Core JS Files   -->
+    <script src="{{ url_for('static', filename='assets/js/tables.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='assets/js/core/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/core/bootstrap-material-design.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+    <!-- Plugin for the momentJs  -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/moment.min.js') }}"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/sweetalert2.js') }}"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/jquery.validate.min.js') }}"></script>
+    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/jquery.bootstrap-wizard.js') }}"></script>
+    <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-selectpicker.js') }}"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-datetimepicker.min.js') }}"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/jasny-bootstrap.min.js') }}"></script>
+    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/fullcalendar.min.js') }}"></script>
+    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/jquery-jvectormap.js') }}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/nouislider.min.js') }}"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- Library for adding dinamically elements -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/arrive.min.js') }}"></script>
+    <!-- Chartist JS -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/chartist.min.js') }}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{{ url_for('static', filename='assets/js/plugins/nouislider.min.js') }}"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename='assets/js/material-dashboard.js') }}" type="text/javascript"></script>
+    <!--?v=2.1.1-->
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
 
-<script>
-    function myFunction() {
-        <!--   relates to the navbar using flex-box to hamburger   -->
-        var x = document.getElementById("burger");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
+    <script>
+        function myFunction() {
+            <!--   relates to the navbar using flex-box to hamburger   -->
+            var x = document.getElementById("burger");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+
         }
 
-    }
-
-    <!--   Confirms logout when clicked in navbar   -->
-    function logoutConfirmationWindow() {
-        var confirm = window.confirm("Are you sure you want to log out?");
-        if (confirm) {
-            return true;
-        } else {
-            return false;
+        <!--   Confirms logout when clicked in navbar   -->
+        function logoutConfirmationWindow() {
+            var confirm = window.confirm("Are you sure you want to log out?");
+            if (confirm) {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
-</script>
-<script>
-    jQuery(document).ready(function ($) {
-        <!--   Prevents back button on table_2 (default login) prompts user to state if they want to logout   -->
-        if (window.history && window.history.pushState) {
+    </script>
+    <script>
+        function sliceSize(dataNum, dataTotal) {
+            return (dataNum / dataTotal) * 360;
+        }
 
-            $(window).on('popstate', function () {
-                var hashLocation = location.hash;
-                var hashSplit = hashLocation.split("#!/");
-                var hashName = hashSplit[1];
-
-                if (hashName !== '') {
-                    var hash = window.location.hash;
-                    if (hash === '') {
-                        var confirm = window.confirm("Click back will log you out. Are you sure you want to log out?");
-                        if (confirm) {
-                            return window.location.href = "{{ url_for('auth.logout') }}";
-
-                        }
-                    }
-                }
+        function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+            $(pieElement).append("<div class='slice " + sliceID + "'><span></span></div>");
+            var offset = offset - 1;
+            var sizeRotation = -179 + sliceSize;
+            $("." + sliceID).css({
+                "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
             });
-
-            window.history.pushState('forward', null, './#forward');
+            $("." + sliceID + " span").css({
+                "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+                "background-color": color
+            });
         }
 
-    });
-</script>
+        function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+            var sliceID = "s" + dataCount + "-" + sliceCount;
+            var maxSize = 179;
+            if (sliceSize <= maxSize) {
+                addSlice(sliceSize, pieElement, offset, sliceID, color);
+            } else {
+                addSlice(maxSize, pieElement, offset, sliceID, color);
+                iterateSlices(sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+            }
+        }
+
+        function createPie(dataElement, pieElement) {
+            var listData = [];
+            $(dataElement + " span").each(function () {
+                listData.push(Number($(this).html()));
+            });
+            var listTotal = 0;
+            for (var i = 0; i < listData.length; i++) {
+                listTotal += listData[i];
+            }
+            var offset = 0;
+            var color = [
+                "cornflowerblue",
+                "olivedrab",
+                "orange",
+                "tomato",
+                "crimson",
+                "purple",
+                "turquoise",
+                "forestgreen",
+                "navy",
+                "gray"
+            ];
+            for (var i = 0; i < listData.length; i++) {
+                var size = sliceSize(listData[i], listTotal);
+                iterateSlices(size, pieElement, offset, i, 0, color[i]);
+                $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+                offset += size;
+            }
+        }
+
+        createPie(".pieID.legend", ".pieID.pie");
+
+    </script>
+    {# to prevent back to login
+{#<script>#}
+    {#    jQuery(document).ready(function ($) {#}
+    {#        <!--   Prevents back button on table_2 (default login) prompts user to state if they want to logout   -->#}
+    {#        if (window.history && window.history.pushState) {#}
+    {##}
+    {#            $(window).on('popstate', function () {#}
+    {#                var hashLocation = location.hash;#}
+    {#                var hashSplit = hashLocation.split("#!/");#}
+    {#                var hashName = hashSplit[1];#}
+    {##}
+    {#                if (hashName !== '') {#}
+    {#                    var hash = window.location.hash;#}
+    {#                    if (hash === '') {#}
+    {#                        var confirm = window.confirm("Click back will log you out. Are you sure you want to log out?");#}
+    {#                        if (confirm) {#}
+    {#                            return window.location.href = "{{ url_for('auth.logout') }}";#}
+    {##}
+    {#                        }#}
+    {#                    }#}
+    {#                }#}
+    {#            });#}
+    {##}
+    {#            window.history.pushState('forward', null, './#forward');#}
+    {#        }#}
+    {##}
+    {#    });#}
+    {#</script>#}
 </body>
 
 </html>

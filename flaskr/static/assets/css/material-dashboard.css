@@ -62,6 +62,91 @@
 }
 
 */
+
+@keyframes bake-pie {
+  from {
+    transform: rotate(0deg) translate3d(0,0,0);
+  }
+}
+.pieID {
+  display: inline-block;
+  vertical-align: top;
+}
+.pie {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  margin: 0 30px 30px 0;
+}
+.pie::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  background: #EEE;
+  border-radius: 50%;
+  top: 50px;
+  left: 50px;
+}
+.pie::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+  margin: 220px auto;
+
+}
+.slice {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  clip: rect(0px, 200px, 200px, 100px);
+  animation: bake-pie 1s;
+}
+.slice span {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  clip: rect(0px, 200px, 200px, 100px);
+}
+.legend {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #FFF;
+  padding: 15px;
+  font-size: 13px;
+  box-shadow: 1px 1px 0 #DDD,
+              2px 2px 0 #BBB;
+}
+.legend li {
+  width: 150px;
+  height: 1.25em;
+  margin-bottom: 0.7em;
+  padding-left: 0.5em;
+  border-left: 1.25em solid black;
+}
+.legend em {
+  font-style: normal;
+}
+.legend span {
+  float: right;
+  left:30px;
+}
+select{
+  width:300px;
+  max-width: 100%;
+}
 footer{
    background-color: #4C6981;
 }
@@ -110,7 +195,7 @@ label {
   line-height: 1.42857;
   color: #AAAAAA;
   font-weight: 400;
-  position: absolute;
+
 }
 
 .modal-body label{
@@ -135,6 +220,7 @@ textarea {
 
 .card {
   font-size: .875rem;
+  margin-bottom: 30px !important;
 }
 
 *,
@@ -16308,6 +16394,15 @@ thead.thead-inverse th,
 .dataTable>thead>tr>td,
 .dataTable>tbody>tr>td,
 .dataTable>tfoot>tr>td {
+  padding: 5px !important;
+}
+
+.ownedPropertyDataTable>thead>tr>th,
+.ownedPropertyDataTable>tbody>tr>th,
+.ownedPropertyDataTable>tfoot>tr>th,
+.ownedPropertyDataTable>thead>tr>td,
+.ownedPropertyDataTable>tbody>tr>td,
+.ownedPropertyDataTable>tfoot>tr>td {
   padding: 5px !important;
 }
 

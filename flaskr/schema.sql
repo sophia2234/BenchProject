@@ -70,6 +70,10 @@ CREATE TABLE formerProperties(
   ,grade          VARCHAR(6) 
   ,like_dislike   BIT  NOT NULL
   ,year_purchased INTEGER
+  ,year_sold INTEGER
+  ,sold_price INTEGER
+  ,renovation_cost INTEGER
+  ,currently_owned DEFAULT 1 NOT NULL
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
