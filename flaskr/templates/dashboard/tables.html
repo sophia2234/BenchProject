@@ -42,54 +42,55 @@
     </div>
 
     <!-- Navbar -->
-        <nav>
-            <div class="w3-bar">
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Recommended Properties</p>
-                </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
+    <nav>
+        <div class="w3-bar">
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Previously Owned</p>
+                <p>Recommended Properties</p>
+            </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
+            <i class="material-icons">content_paste</i>
+            <p>Previously Owned</p>
+        </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
+                <i class="material-icons">person</i>
+                <p>User Profile</p>
             </a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-                <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
-                        <i class="material-icons">help_outline</i>
-                        <p>F.A.Q.</p>
-                    </a>
-                <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()" href="{{ url_for('auth.logout') }}">
-                    <i class="material-icons">person</i>
-                    <p>Log out</p>
-                </a>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
-                   onclick="myFunction()">&#9776;</a>
-            </div>
-            <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
-                <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Recommended Properties</p>
-                </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.faq') }}">
+                <i class="material-icons">help_outline</i>
+                <p>F.A.Q.</p>
+            </a>
+            <a class="w3-bar-item w3-button w3-hide-small" onclick="return logoutConfirmationWindow()"
+               href="{{ url_for('auth.logout') }}">
+                <i class="material-icons">person</i>
+                <p>Log out</p>
+            </a>
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium"
+               onclick="myFunction()">&#9776;</a>
+        </div>
+        <div id="burger" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
+            <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Previously Owned</p>
+                <p>Recommended Properties</p>
+            </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
+            <i class="material-icons">content_paste</i>
+            <p>Previously Owned</p>
+        </a>
+            <a class="nav-link" href="{{ url_for('dashboard.index') }}">
+                <i class="material-icons">person</i>
+                <p>User Profile</p>
             </a>
-                <a class="nav-link" href="{{ url_for('dashboard.index') }}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-                <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
-                    <i class="material-icons">help_outline</i>
-                    <p>F.A.Q.</p>
-                </a>
+            <a class="nav-link" href="{{ url_for('dashboard.faq') }}">
+                <i class="material-icons">help_outline</i>
+                <p>F.A.Q.</p>
+            </a>
 
-                <a class="nav-link" href="{{ url_for('auth.logout') }}">
-                    <i class="material-icons">person</i>
-                    <p>Log out</p>
-                </a>
-            </div>
-        </nav>
-      <!-- End Navbar -->
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                <i class="material-icons">person</i>
+                <p>Log out</p>
+            </a>
+        </div>
+    </nav>
+    <!-- End Navbar -->
 
     <div class="content">
         <div class="container-fluid">
@@ -198,7 +199,36 @@
                                             <input type="yearPurchased" name="yearPurchased" id="yearPurchased"><br><br>
                                         </div>
                                     </div>
-                                    <input type="submit" value="Add Property" class="btn btn-primary" onClick="savevalue()">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="renovationCost">Renovation Cost: </label>
+                                            <input type="renovationCost" name="renovationCost"
+                                                   id="renovationCost"><br><br>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="yearSold">Year Sold: </label>
+                                            <input type="yearSold" name="yearSold" id="yearSold"><br><br>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="soldAmount">Sold Amount: </label>
+                                            <input type="soldAmount" name="soldAmount" id="soldAmount"><br><br>
+                                        </div>
+                                        <div class="col-md-3 form-group">
+                                            <label for="buildingStyle">Filter By Property Type: </label>
+                                            <select name="buildingStyle">
+                                                <option value="Ranch">Ranch</option>
+                                                <option value="Conventional">Conventional</option>
+                                                <option value="Townhouse">Townhouse</option>
+                                                <option value="Bungalow">Bungalow</option>
+                                                <option value="Audi">Mobile-Homes</option>
+                                                <option value="4-Split">4 Split</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Add Property" class="btn btn-primary"
+                                           onClick="savevalue()">
                                 </form>
                             </div>
                         </div>
@@ -328,42 +358,43 @@
             return false;
         }
     }
-    $(document).ready(function() { // When page finished loading
-  if ( $('.flash').length ) { // if there is an DOM that has class has-error
-     $('#addPropModal').modal('show'); // Show Modal
-  }
-});
+
+    $(document).ready(function () { // When page finished loading
+        if ($('.flash').length) { // if there is an DOM that has class has-error
+            $('#addPropModal').modal('show'); // Show Modal
+        }
+    });
 </script>
- <script type="text/javascript">
+<script type="text/javascript">
     function savevalue() {
-      localStorage.setItem("address", document.getElementById('address').value);
-      localStorage.setItem("beds", document.getElementById('beds').value);
-      localStorage.setItem("baths", document.getElementById('baths').value);
-      localStorage.setItem("halfBaths", document.getElementById('halfBaths').value);
-      localStorage.setItem("sqft", document.getElementById('sqft').value);
+        localStorage.setItem("address", document.getElementById('address').value);
+        localStorage.setItem("beds", document.getElementById('beds').value);
+        localStorage.setItem("baths", document.getElementById('baths').value);
+        localStorage.setItem("halfBaths", document.getElementById('halfBaths').value);
+        localStorage.setItem("sqft", document.getElementById('sqft').value);
 
-      localStorage.setItem("zip", document.getElementById('zip').value);
-      localStorage.setItem("yearBuilt", document.getElementById('yearBuilt').value);
-      localStorage.setItem("landValue", document.getElementById('landValue').value);
-      localStorage.setItem("buildingValue", document.getElementById('buildingValue').value);
-      localStorage.setItem("yearPurchased", document.getElementById('yearPurchased').value);
+        localStorage.setItem("zip", document.getElementById('zip').value);
+        localStorage.setItem("yearBuilt", document.getElementById('yearBuilt').value);
+        localStorage.setItem("landValue", document.getElementById('landValue').value);
+        localStorage.setItem("buildingValue", document.getElementById('buildingValue').value);
+        localStorage.setItem("yearPurchased", document.getElementById('yearPurchased').value);
 
     }
 
-    window.onload = function() {
-      document.getElementById('address').value = localStorage.getItem("address");
-      document.getElementById('beds').value = localStorage.getItem("beds");
-      document.getElementById('baths').value = localStorage.getItem("baths");
-      document.getElementById('halfBaths').value = localStorage.getItem("halfBaths");
-      document.getElementById('zip').value = localStorage.getItem("zip");
-      document.getElementById('yearBuilt').value = localStorage.getItem("yearBuilt");
-      document.getElementById('landValue').value = localStorage.getItem("landValue");
-      document.getElementById('buildingValue').value = localStorage.getItem("buildingValue");
-      document.getElementById('yearPurchased').value = localStorage.getItem("yearPurchased");
-      document.getElementById('address').focus();
+    window.onload = function () {
+        document.getElementById('address').value = localStorage.getItem("address");
+        document.getElementById('beds').value = localStorage.getItem("beds");
+        document.getElementById('baths').value = localStorage.getItem("baths");
+        document.getElementById('halfBaths').value = localStorage.getItem("halfBaths");
+        document.getElementById('zip').value = localStorage.getItem("zip");
+        document.getElementById('yearBuilt').value = localStorage.getItem("yearBuilt");
+        document.getElementById('landValue').value = localStorage.getItem("landValue");
+        document.getElementById('buildingValue').value = localStorage.getItem("buildingValue");
+        document.getElementById('yearPurchased').value = localStorage.getItem("yearPurchased");
+        document.getElementById('address').focus();
     }
 
-  </script>
+</script>
 </body>
 
 </html>

@@ -70,7 +70,7 @@ def index():
                 'SELECT email FROM user WHERE email = ? AND userId =?', (email, session.get('user_id'))
         ).fetchone():
             error is None
-#            error = []
+        #            error = []
         elif db.execute(
                 'SELECT email FROM user WHERE email = ?', (email,)
         ).fetchone() is not None:
@@ -128,7 +128,7 @@ def changePassword():
         while x:
             if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
                 error.extend([
-                                 "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+                    "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
                 break
             else:
                 x = False
@@ -163,6 +163,10 @@ def table1():
         landValue = request.form['landValue']
         buildingValue = request.form['buildingValue']
         yearPurchased = request.form['yearPurchased']
+        yearSold = request.form['yearSold']
+        soldAmount = request.form['soldAmount']
+        renovationCost = request.form['renovationCost']
+        buildingStyle = request.form['buildingStyle']
         currentYear = int(datetime.datetime.now().year)
         error = []
         db = get_db()
@@ -183,6 +187,20 @@ def table1():
             error.extend(["Please Enter a Valid Year Built"])
         if re.search("[0-9]+", landValue) is None:
             error.extend(["Please Enter a Valid Integer of Land Value"])
+
+        if yearSold is '':
+            print('Do nothing')
+        elif int(yearSold) > int(currentYear):
+            error.extend(["Please Enter a Valid Year Sold"])
+        if soldAmount is not None:
+            print("do nothing")
+        elif re.search("[0-9]+", soldAmount) is None:
+            error.extend(["Please Enter a Valid Integer for Sold Amount"])
+        if renovationCost is not None:
+            print("do nothing")
+        elif re.search("[0-9]+", renovationCost) is None:
+            error.extend(["Please Enter a Valid Integer for Renovation Cost"])
+
         if re.search("[0-9]+", buildingValue) is None:
             error.extend(["Please Enter a Valid Integer of Building Value"])
         if re.search("[0-9]+", yearPurchased) is None or int(yearPurchased) > int(currentYear):
@@ -199,9 +217,9 @@ def table1():
         if not error:
             totalValue = int(landValue) + int(buildingValue)
             db.execute(
-                'INSERT INTO formerProperties (address, total_beds, bath, half_bath, living_sq_ft, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                (address, beds, baths, halfBaths, sqft, zip, yearBuilt, landValue, buildingValue, totalValue,
-                 yearPurchased, session.get('user_id'), 1)
+                'INSERT INTO formerProperties (address, total_beds, bath, half_bath, living_sq_ft, building_style, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, year_sold, sold_price, renovation_cost, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?, ?, ?, ?)',
+                (address, beds, baths, halfBaths, sqft, buildingStyle, zip, yearBuilt, landValue, buildingValue, totalValue,
+                 yearPurchased, yearSold, soldAmount, renovationCost, session.get('user_id'), 1)
             )
             db.commit()
             print("successfully inserted into database")
@@ -366,10 +384,12 @@ def deleteRow():
 def homepage():
     return render_template('dashboard/homepage.html')
 
+
 # Method that renders faq.html
 @bp.route('/faq')
 def faq():
     return render_template('dashboard/faq.html')
+
 
 # AI Function that sends Recommended Properties to tables_2.html
 @bp.route('/table2/recommended', methods=('GET', 'POST'))
