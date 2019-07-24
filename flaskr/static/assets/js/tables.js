@@ -131,8 +131,10 @@ function addProperty(e) {
 // Clears the recommended table and repopulates
 function refreshTable() {
     $("#dataTable tbody tr").remove();
-    updateTable();
-    displayOwnedTable();
+    updateTable()
+    window.location.reload(true)
+    displayOwnedTable()
+    window.location.reload(true)
 }
 
 //This is called when a delete button is pushed, adds property to model as a "disliked" property
@@ -241,12 +243,24 @@ function showMap(e) {
 // This dynamically populates the previously owned table
 function displayOwnedTable() {
     var url = "table1/previousProperties";
-
+    var countSold = 0;
+    var countPurchase = 0;
+    var totalProfit = 0;
+    var typeArray = []
+    var typeDict = {};
     $.getJSON(url, null, function (jsonResult) {
         if (jsonResult.length > 0) {
             for (var i = 0; i < jsonResult.length; i++) {
+                if (jsonResult[i].year_sold != null) {
+                    countSold = countSold + 1;
+                }
+                if (jsonResult[i].total_value != null) {
+                    countPurchase = countPurchase + 1;
+                }
                 var totalBaths = jsonResult[i].bath + (jsonResult[i].half_bath * 0.5);
-                var netProfit = jsonResult[i].year_sold - (jsonResult[i].renovation_cost + jsonResult[i].total_value)
+                var netProfit = jsonResult[i].sold_price - (jsonResult[i].renovation_cost + jsonResult[i].total_value)
+                totalProfit = netProfit + totalProfit
+                typeArray.push(jsonResult[i].building_style)
                 $("#ownedPropertyDataTable tbody:last").append('<tr><td style="display:none;">' + jsonResult[i].ID + '</td><td>' +
                     jsonResult[i].address + '</td><td>' +
                     jsonResult[i].building_style + '</td><td>' +
@@ -254,8 +268,8 @@ function displayOwnedTable() {
                     totalBaths + '</td><td>' +
                     jsonResult[i].year_purchased + '</td><td>' +
                     "$" + jsonResult[i].total_value.toLocaleString() + '</td><td>' +
-                     jsonResult[i].year_sold + '</td><td>' +
-                      jsonResult[i].sold_price + '</td><td>' +
+                    jsonResult[i].year_sold + '</td><td>' +
+                    jsonResult[i].sold_price + '</td><td>' +
                     jsonResult[i].renovation_cost + '</td><td>' +
                     "$" + netProfit.toLocaleString() + '</td><td style="display:none;">' +
 
@@ -278,6 +292,22 @@ function displayOwnedTable() {
                     jsonResult[i].grade + '</td></tr>'
                 );
             }
+
+            //Create dict with count of each  element
+            for (var j = 0; j < typeArray.length; ++j) {
+                if (!typeDict[typeArray[j]])
+                    typeDict[typeArray[j]] = 0;
+                ++typeDict[typeArray[j]];
+            }
+            console.log(typeDict)
+
+            for(var key in typeDict){
+                $("#pieIDLegend").append('<li><em>' + key + '</em>' + '<span>' + typeDict[key] +'</span></li>')
+            }
+
+            $("#amountBrought").append(countPurchase.toString())
+            $("#amountSold").append(countSold.toString())
+            $("#totalNetProfit").append("$" + totalProfit.toLocaleString())
         } else {
             $("#previousPropertyTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
         }

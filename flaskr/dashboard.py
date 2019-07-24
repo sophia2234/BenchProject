@@ -39,14 +39,15 @@ def index():
         lastName = request.form['lastName']
         description = request.form['description']
         photoUploaded = False
+        error = []
         try:
             file = request.files['photo']
             extension = os.path.splitext(file.filename)[1]
-            ALLOWED_EXTENSIONS = set(['.jpe', '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.bmp'])
+            ALLOWED_EXTENSIONS = set(['.jpe', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.bmp'])
             if extension not in ALLOWED_EXTENSIONS and extension != '':
-                flash('You submitted a ' + str(
+                error.extend(['You submitted a ' + str(
                     type(extension)) + ' file which is invalid. Please Enter A Valid Photo Type ' + str(
-                    ALLOWED_EXTENSIONS))
+                    ALLOWED_EXTENSIONS)])
             elif extension == '':
                 print("Do nothing")
             else:
@@ -58,7 +59,6 @@ def index():
         except:
             photoUploaded = False
 
-        error = []
         db = get_db()
         if re.search("[a-zA-Z ]+", firstName) is None:
             error.extend(["Please Enter a Valid First Name"])
@@ -124,17 +124,13 @@ def changePassword():
         error = []
         db = get_db()
 
-        x = True;
-        while x:
-            if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
-                error.extend([
-                    "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
-                break
-            else:
-                x = False
+
+        if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
+            error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+
         if password != passwordConfirmation:
             error.extend(['Password must match.'])
-        else:
+        if not error:
             db.execute(
                 'UPDATE user SET password = ? WHERE userId = ?',
                 (generate_password_hash(password), session.get('user_id'))
@@ -218,7 +214,8 @@ def table1():
             totalValue = int(landValue) + int(buildingValue)
             db.execute(
                 'INSERT INTO formerProperties (address, total_beds, bath, half_bath, living_sq_ft, building_style, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, year_sold, sold_price, renovation_cost, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?, ?, ?, ?)',
-                (address, beds, baths, halfBaths, sqft, buildingStyle, zip, yearBuilt, landValue, buildingValue, totalValue,
+                (address, beds, baths, halfBaths, sqft, buildingStyle, zip, yearBuilt, landValue, buildingValue,
+                 totalValue,
                  yearPurchased, yearSold, soldAmount, renovationCost, session.get('user_id'), 1)
             )
             db.commit()
@@ -306,6 +303,26 @@ def delete_table1_row():
         print("Deleted Successfully")
 
     return "Made it here in delete_table1_row()"
+
+
+# Sends filtered Previously owned properties to tables.html
+@bp.route('/table1/filterOwnedProperty', methods=('GET', 'POST'))
+def sendFilteredProperties():
+    db = get_db()
+    if request.method == 'POST':
+        if request.form['yearPurchase'] != None:
+            yearPurchase = request.form['yearPurchase']
+        if request.form['yearSold'] != None:
+            yearSold = request.form['yearSold']
+        buildingStyle = request.form['buildingStyle']
+
+        query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id'))
+        if buildingStyle != "all":
+            buildingStyle = "'" + buildingStyle + "'"
+            query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id')) + " AND building_style = %s" % buildingStyle
+        data = pd.read_sql_query(query, db)
+        jsonData = data.to_json(orient="records")
+    return jsonData
 
 
 # Sends all Previously owned properties to tables.html
