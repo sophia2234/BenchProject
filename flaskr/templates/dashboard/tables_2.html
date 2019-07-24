@@ -97,35 +97,13 @@
                     <div class="pieID pie">
 
                     </div>
-                    <ul class="pieID legend">
-                        <li>
-                            <em>Ranch</em>
-                            <span>718</span>
-                        </li>
-                        <li>
-                            <em>Conventional</em>
-                            <span>531</span>
-                        </li>
-                        <li>
-                            <em>Townhouse</em>
-                            <span>868</span>
-                        </li>
-                        <li>
-                            <em>Bungalow</em>
-                            <span>344</span>
-                        </li>
-                        <li>
-                            <em>Mobile</em>
-                            <span>1145</span>
-                        </li>
-                        <li>
-                            <em>4-Split</em>
-                            <span>145</span>
-                        </li>
+                    <ul class="pieID legend" id="pieIDLegend">
+                        <!-- Dynamically loading from tables.js -->
+
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <form method="post">
+                    <form method="post" action="/table1/filterOwnedProperty">
                         <div style="margin: 20px;">
                             {% for message in get_flashed_messages() %}
                                 <p class="flash"
@@ -134,24 +112,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="year-purchase">Filter By Year Purchase: </label>
-                                <input name="year-purchase" id="year-purchase"><br><br>
+                                <label for="yearPurchase">Filter By Year Purchase: </label>
+                                <input type="yearPurchase" name="yearPurchase" id="yearPurchase"><br><br>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label for="year-sold">Filter By Year Sold: </label>
-                                <input type="year-sold" name="year-sold" id="year-sold"><br><br>
+                                <label for="yearSold">Filter By Year Sold: </label>
+                                <input type="yearSold" name="yearSold" id="yearSold"><br><br>
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label for="buildingStyle">Filter By Property Type: </label>
                                 <select name="buildingStyle">
                                     <option value="all">All</option>
-                                    <option value="ranch">Ranch</option>
-                                    <option value="conventional">Conventional</option>
-                                    <option value="townhouse">Townhouse</option>
-                                    <option value="bungalow">Bungalow</option>
-                                    <option value="audi">Mobile-Homes</option>
-                                    <option value="4-split">4 Split</option>
+                                    <option value="Ranch">Ranch</option>
+                                    <option value="Conventional">Conventional</option>
+                                    <option value="Townhouse">Townhouse</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="Audi">Mobile-Homes</option>
+                                    <option value="Split">Split</option>
                                 </select>
                             </div>
                         </div>
@@ -162,17 +140,18 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title ">Total Invested Amount: $500000</h4>
+                                <h4 class="card-title" id="totalNetProfit">Total Invested Amount: </h4>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title ">Number of Houses Brought: 26</h4>
+                                <h4 class="card-title" id="amountBrought">Number of Houses Brought: </h4>
+
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title ">Number of Houses Sold: 3</h4>
+                                <h4 class="card-title" id="amountSold">Number of Houses Sold: </h4>
                             </div>
                         </div>
                     </div>
@@ -414,6 +393,9 @@
     }
 
     createPie(".pieID.legend", ".pieID.pie");
+
+</script>
+<script>
 
 </script>
 {# to prevent back to login
