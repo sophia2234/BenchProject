@@ -1,7 +1,7 @@
 <!--
     TABLES
     -Navbar
-    -Currently OWNED table
+    -PREVIOUSLY OWNED table (AKA soldProperties)
     -ADD PROPERTY Modal
     -Google Map pop-up ***not in use***
     -***Random pop-up modal not currently in use. No Idea***
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Navbar -->
-       <nav>
+      <nav>
         <div class="w3-bar">
             <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
@@ -125,11 +125,10 @@
                                     <th>Price</th>
                                     <th>Zip</th>
                                     <th>Map</th>
-                                    <th>Sold</th>
                                     <th>Delete</th>
                                     </thead>
                                     <tbody>
-                                    <!-- Table body dynamically updates in previousPropertyTable.js -->
+                                    <!-- Table body dynamically updates in soldProperties.js -->
                                     </tbody>
                                 </table>
                             </div>
@@ -153,7 +152,7 @@
                                     <span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <form method="post">
+                                <form method="post" action="/soldProperties">
                                     <div style="margin: 20px;">
                                         {% for message in get_flashed_messages() %}
                                             <p class="flash"
@@ -308,7 +307,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSIgQOE8qkbnu2eHzFNlvvFtSADlf2eas"></script>
 
 <!--   Core JS Files   -->
-<script src="{{ url_for('static', filename='assets/js/previousPropertyTable.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/soldProperties.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/core/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/core/popper.min.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/core/bootstrap-material-design.min.js') }}"></script>

@@ -1,9 +1,10 @@
 
+
 displayTable();
 
 // This dynamically populates the previously owned table
 function displayTable(){
-    var url = "table1/previousProperties";
+    var url = "/soldProperties/previousProperties";
 
      $.getJSON(url, null, function (jsonResult) {
      	if (jsonResult.length > 0){
@@ -15,7 +16,7 @@ function displayTable(){
                 totalBaths + '</td><td>' +
                 jsonResult[i].living_sq_ft.toLocaleString() + '</td><td>' +
                 jsonResult[i].year_built + '</td><td>' +
-                "$" + jsonResult[i].total_value.toLocaleString() + '</td><td>' +   
+                "$" + jsonResult[i].total_value.toLocaleString() + '</td><td>' +
                 jsonResult[i].zip_code + '</td><td style="display:none;">' +
 
                 //Hidden columns
@@ -41,7 +42,7 @@ function displayTable(){
                 '<button type="button" data-toggle="modal" data-target=".bd-sold-modal-lg" name="sold" class="soldButton btn" value="' + jsonResult[i].ID +'">Map</button' + '</td><td>' +
                 '<button type="button" name="delete" class="deleteButton btn" value="' + jsonResult[i].ID +'">Delete</button' + '</td><tr>'
          		);
-        	} 
+        	}
             //Buttons
         	$(".mapButton").on("click", showMap);
      		$(".soldButton").on("click", showMap);
@@ -95,7 +96,7 @@ function deleteItem(e) {
       "zip_code":zip_code,
    }
 
-    var url = "table1/delete";
+    var url = "/soldProperties/delete";
 
     var confirm = window.confirm("Are you sure you want to delete?");
     if(confirm){
