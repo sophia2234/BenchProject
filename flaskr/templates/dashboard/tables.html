@@ -42,7 +42,7 @@
     </div>
 
     <!-- Navbar -->
-       <nav>
+    <nav>
         <div class="w3-bar">
             <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
@@ -155,10 +155,10 @@
                             <div class="modal-body">
                                 <form method="post">
                                     <div style="margin: 20px;">
-                                        {% for message in get_flashed_messages() %}
-                                            <p class="flash"
-                                               style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
-                                        {% endfor %}
+                                         {% for message in get_flashed_messages(category_filter=["error"]) %}
+                                    <p class="flash"
+                                       style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
+                                {% endfor %}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 form-group">
@@ -261,6 +261,57 @@
                 </div>
                 <div class="modal-body">
                     <div id="map" style=" max-height: 100%; max-weight: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sell pop-up modal -->
+    <div class="modal fade bd-sold-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true" id="saleInfoModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="table1/sellProperty">
+                        <div style="margin: 20px;">
+                             {% for message in get_flashed_messages(category_filter=["success"]) %}
+                                    <p class="flashed"
+                                       style="margin: 1em 0;padding: 1em;background: #cae6f6; border: 1px solid #377ba8;">{{ message }}</p>
+                                {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="preAddress">Address: </label>
+                                <input readonly type="preAddress" name="preAddress" id="preAddress" value="12"><br><br>
+                            </div>
+                            <div class="col-md-6 form-group">
+                               <label for="preZipCode">Zip Code: </label>
+                                <input readonly type="preZipCode" name="preZipCode" id="preZipCode" value="12"><br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                             <div class="col-md-6 form-group">
+                                <label for="soldAmount">Sold Price: </label>
+                                <input type="soldAmount" name="soldAmount" id="soldAmount"><br><br>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="year_sold">Year Sold: </label>
+                                <input type="year_sold" name="year_sold" id="year_sold"><br><br>
+                            </div>
+                        </div>
+                    <div class="row">
+                             <div class="col-md-6 form-group">
+                                 <label for="renovationCost">Renovation Cost: </label>
+                                <input name="renovationCost" id="renovationCost"><br><br>
+                            </div>
+
+                        </div>
+                        <input type="submit" value="Update to Sale" class="btn btn-primary">
+                    </form>
                 </div>
             </div>
         </div>
@@ -373,6 +424,11 @@
     $(document).ready(function () { // When page finished loading
         if ($('.flash').length) { // if there is an DOM that has class has-error
             $('#addPropModal').modal('show'); // Show Modal
+        }
+    });
+     $(document).ready(function () { // When page finished loading
+        if ($('.flashed').length) { // if there is an DOM that has class has-error
+            $('#saleInfoModal').modal('show'); // Show Modal
         }
     });
 </script>

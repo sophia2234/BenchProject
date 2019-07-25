@@ -222,7 +222,7 @@ def table1():
             print("successfully inserted into database")
 
         for eror in error:
-            flash(eror)
+            flash(eror, 'error')
 
     return render_template('dashboard/tables.html')
 
@@ -272,6 +272,8 @@ def soldProperties():
         if re.search("[0-9]+", soldAmount) is None:
             error.extend(["Please Enter a Valid Integer for Sold Amount"])
         if renovationCost is None:
+            error.extend(["Please Enter a Valid Integer for Renovation Cost or enter 0"])
+        elif re.search("[0-9]+", renovationCost) is None:
             error.extend(["Please Enter a Valid Integer for Renovation Cost or enter 0"])
         if re.search("[0-9]+", buildingValue) is None:
             error.extend(["Please Enter a Valid Integer of Building Value"])
@@ -391,6 +393,48 @@ def addRow():
             print("Inserted Successfully")
     deleteRow()
     return "Made it here in addRow()"
+
+# Adds property to soldProperties owned through the "Sell" button on tables.html (ownedTable)
+@bp.route('/table1/sellProperty', methods=('GET', 'POST'))
+def addToSold():
+    db = get_db()
+    if request.method == 'POST':
+        address = request.form['preAddress']
+        zip_code = request.form['preZipCode']
+        soldAmount = request.form['soldAmount']
+        year_sold = request.form['year_sold']
+        renovationCost = request.form['renovationCost']
+        currentYear = int(datetime.datetime.now().year)
+        error = []
+
+        if re.search("[0-9]+", year_sold) is None or int(year_sold) > currentYear:
+            error.extend(["Please Enter a Valid Year Sold"])
+        if re.search("[0-9]+", soldAmount) is None:
+            error.extend(["Please Enter a Valid Integer for Sold Amount"])
+        if renovationCost is None:
+            error.extend(["Please Enter a Valid Integer for Renovation Cost or enter 0"])
+        elif re.search("[0-9]+", renovationCost) is None:
+            error.extend(["Please Enter a Valid Integer for Renovation Cost or enter 0"])
+
+        if db.execute(
+                'SELECT * FROM currentProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
+        ).fetchone() is not None and not error:
+            db.execute(
+                'UPDATE currentProperties SET year_sold = ' + year_sold + ' , sold_price = ' + soldAmount + ' , renovation_cost =' + renovationCost + ' WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip_code, session.get('user_id'))
+            )
+            db.commit()
+            print("Updated Successfully")
+            db.execute('DELETE FROM currentProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                       (address, zip_code, session.get('user_id')))
+            db.commit()
+            print("Deleted Successfully")
+        else:
+            for eror in error:
+                flash(eror, 'success')
+
+    return redirect(url_for('dashboard.table1'))
 
 
 # Deletes a property from previously owned when user presses delete button in tables.html
