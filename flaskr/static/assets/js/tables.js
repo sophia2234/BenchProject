@@ -1,6 +1,5 @@
 updateTable();
 displayOwnedTable();
-
 // This dynamically populates the recommended properties table
 function updateTable() {
     var url = "table2/recommended";
@@ -55,8 +54,8 @@ function addProperty(e) {
     var ID = e.target.value;
     var target = e.target, count = +target.dataset.count;
     // toggle change the color on click from default grey to yellow based on series of 0 and 1 clicks
-    target.style.backgroundColor = count === 1 ? "#999999" : '#ffeb3b';
-    target.dataset.count = count === 1 ? 0 : 1;
+    // target.style.backgroundColor = count === 1 ? "#999999" : '#ffeb3b';
+    // target.dataset.count = count === 1 ? 0 : 1;
     var address = e.target.parentNode.parentNode.childNodes[1].innerHTML;
     var total_beds = e.target.parentNode.parentNode.childNodes[2].innerHTML;
     var total_baths = e.target.parentNode.parentNode.childNodes[3].innerHTML;
@@ -113,7 +112,7 @@ function addProperty(e) {
     }
 
     var url = "table1/add";
-    var confirm = window.confirm("Are you sure you want to delete?");
+    var confirm = window.confirm("Are you sure you want to add this property to your currently owned?");
     if (confirm) {
         $.ajax({
             type: 'POST',
@@ -134,7 +133,8 @@ function refreshTable() {
     updateTable()
     window.location.reload(true)
     displayOwnedTable()
-    window.location.reload(true)
+    createPie(".pieID.legend", ".pieID.pie");
+    // window.location.reload(true)
 }
 
 //This is called when a delete button is pushed, adds property to model as a "disliked" property
@@ -242,7 +242,7 @@ function showMap(e) {
 
 // This dynamically populates the previously owned table
 function displayOwnedTable() {
-    var url = "table1/previousProperties";
+    var url = "/soldProperties/previousProperties";
     var countSold = 0;
     var countPurchase = 0;
     var totalProfit = 0;
@@ -313,6 +313,67 @@ function displayOwnedTable() {
         }
     });
 }
+
+    function sliceSize(dataNum, dataTotal) {
+    console.log("here?")
+        return (dataNum / dataTotal) * 360;
+    }
+
+    function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+        $(pieElement).append("<div class='slice " + sliceID + "'><span></span></div>");
+        var offset = offset - 1;
+        var sizeRotation = -179 + sliceSize;
+        $("." + sliceID).css({
+            "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
+        });
+        $("." + sliceID + " span").css({
+            "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+            "background-color": color
+        });
+    }
+
+    function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+        var sliceID = "s" + dataCount + "-" + sliceCount;
+        var maxSize = 179;
+        if (sliceSize <= maxSize) {
+            addSlice(sliceSize, pieElement, offset, sliceID, color);
+        } else {
+            addSlice(maxSize, pieElement, offset, sliceID, color);
+            iterateSlices(sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+        }
+    }
+
+    function createPie(dataElement, pieElement) {
+        var listData = [];
+        $(dataElement + " span").each(function () {
+            listData.push(Number($(this).html()));
+            console.log("last known")
+        });
+        var listTotal = 0;
+        for (var i = 0; i < listData.length; i++) {
+            listTotal += listData[i];
+        }
+        var offset = 0;
+        var color = [
+            "cornflowerblue",
+            "olivedrab",
+            "orange",
+            "tomato",
+            "crimson",
+            "purple",
+            "turquoise",
+            "forestgreen",
+            "navy",
+            "gray"
+        ];
+        for (var i = 0; i < listData.length; i++) {
+            var size = sliceSize(listData[i], listTotal);
+            console.log("got here")
+            iterateSlices(size, pieElement, offset, i, 0, color[i]);
+            $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+            offset += size;
+        }
+    }
 
 
 

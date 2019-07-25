@@ -43,11 +43,16 @@
         <div class="w3-bar">
             <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
-                <p>Recommended Properties</p>
-            </a> <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
-            <i class="material-icons">content_paste</i>
-            <p>Previously Owned</p>
-        </a>
+                <p>Dashboard</p>
+            </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.table1') }}">
+                <i class="material-icons">content_paste</i>
+                <p>Current Properties</p>
+            </a>
+            <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.soldProperties') }}">
+                <i class="material-icons">content_paste</i>
+                <p>Sold Properties</p>
+            </a>
             <a class="w3-bar-item w3-button w3-hide-small" href="{{ url_for('dashboard.index') }}">
                 <i class="material-icons">person</i>
                 <p>User Profile</p>
@@ -68,10 +73,15 @@
             <a class="nav-link" href="{{ url_for('dashboard.table2') }}">
                 <i class="material-icons">content_paste</i>
                 <p>Recommended Properties</p>
-            </a> <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
-            <i class="material-icons">content_paste</i>
-            <p>Previously Owned</p>
-        </a>
+            </a>
+            <a class="nav-link" href="{{ url_for('dashboard.table1') }}">
+                <i class="material-icons">content_paste</i>
+                <p>Current Properties</p>
+            </a>
+            <a class="nav-link" href="{{ url_for('dashboard.soldProperties') }}">
+                <i class="material-icons">content_paste</i>
+                <p>Sold Properties</p>
+            </a>
             <a class="nav-link" href="{{ url_for('dashboard.index') }}">
                 <i class="material-icons">person</i>
                 <p>User Profile</p>

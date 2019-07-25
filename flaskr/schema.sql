@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS properties;
+DROP TABLE IF EXISTS currentProperties;
 DROP TABLE IF EXISTS formerProperties;
 
 CREATE TABLE user (
@@ -43,7 +44,7 @@ CREATE TABLE properties(
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
-CREATE TABLE formerProperties(
+CREATE TABLE currentProperties(
    ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
   ,class          VARCHAR(10)
   ,land_value     INTEGER  NOT NULL
@@ -76,8 +77,41 @@ CREATE TABLE formerProperties(
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
+CREATE TABLE formerProperties(
+   ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
+  ,class          VARCHAR(10)
+  ,land_value     INTEGER  NOT NULL
+  ,bldg_value     INTEGER  NOT NULL
+  ,total_value    INTEGER  NOT NULL
+  ,address        VARCHAR(32) NOT NULL
+  ,address_city   VARCHAR(15)
+  ,zip_code       INTEGER  NOT NULL
+  ,owner          VARCHAR(50)
+  ,school_dist    INTEGER
+  ,land_sq_ft     INTEGER
+  ,year_built     INTEGER  NOT NULL
+  ,living_sq_ft   INTEGER  NOT NULL
+  ,condition      VARCHAR(12)
+  ,residence_type VARCHAR(12)
+  ,building_style VARCHAR(16)
+  ,bath           INTEGER  NOT NULL
+  ,half_bath      INTEGER
+  ,bedrooms       INTEGER
+  ,basement_beds  INTEGER
+  ,total_beds     INTEGER  NOT NULL
+  ,attached_gar   INTEGER
+  ,price          INTEGER
+  ,grade          VARCHAR(6)
+  ,like_dislike   BIT  NOT NULL
+  ,year_purchased INTEGER NOT NULL
+  ,year_sold INTEGER NOT NULL
+  ,sold_price INTEGER NOT NULL
+  ,renovation_cost INTEGER NOT NULL
+  ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
+);
+
 /* This automatically adds new properties to the model when added to the previous owned table */
-CREATE TRIGGER addFormerPropertyToModel AFTER INSERT on formerProperties
+CREATE TRIGGER addFormerPropertyToModel AFTER INSERT on currentProperties
 
 BEGIN
 
@@ -91,7 +125,7 @@ END;
 
 
 /* When a user deletes a previously owned property, this will also delete it from the model */
-CREATE TRIGGER deleteFormerPropertyInModel AFTER DELETE on formerProperties
+CREATE TRIGGER deleteFormerPropertyInModel AFTER DELETE on currentProperties
 
 BEGIN
 

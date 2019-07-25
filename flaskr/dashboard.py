@@ -124,9 +124,9 @@ def changePassword():
         error = []
         db = get_db()
 
-
         if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
-            error.extend(["Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+            error.extend([
+                             "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
 
         if password != passwordConfirmation:
             error.extend(['Password must match.'])
@@ -204,6 +204,82 @@ def table1():
         elif int(yearPurchased) < int(yearBuilt):
             error.extend(["The Year Built must be before the Year Purchased"])
         if db.execute(
+                'SELECT address, zip_code FROM currentProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                (address, zip, session.get('user_id'))
+        ).fetchone() is not None:
+            error.extend(["This property is already in the Previously Owned table."])
+
+        # SQL to run if there is no error and the property doesn't already exist
+        if not error:
+            totalValue = int(landValue) + int(buildingValue)
+            db.execute(
+                'INSERT INTO currentProperties (address, total_beds, bath, half_bath, living_sq_ft, building_style, zip_code, year_built, land_value, bldg_value, total_value, year_purchased, year_sold, sold_price, renovation_cost, userId, like_dislike) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? , ?, ?, ?, ?, ?)',
+                (address, beds, baths, halfBaths, sqft, buildingStyle, zip, yearBuilt, landValue, buildingValue,
+                 totalValue,
+                 yearPurchased, yearSold, soldAmount, renovationCost, session.get('user_id'), 1)
+            )
+            db.commit()
+            print("successfully inserted into database")
+
+        for eror in error:
+            flash(eror)
+
+    return render_template('dashboard/tables.html')
+
+
+# Renders soldPropertiesTable.html
+@bp.route('/soldProperties', methods=('GET', 'POST'))
+@login_required
+def soldProperties():
+    if request.method == 'POST':
+        address = request.form['address']
+        beds = request.form['beds']
+        baths = request.form['baths']
+        halfBaths = request.form['halfBathrooms']
+        sqft = request.form['sqft']
+        zip = request.form['zip']
+        yearBuilt = request.form['yearBuilt']
+        landValue = request.form['landValue']
+        buildingValue = request.form['buildingValue']
+        yearPurchased = request.form['yearPurchased']
+        yearSold = request.form['yearSold']
+        soldAmount = request.form['soldAmount']
+        renovationCost = request.form['renovationCost']
+        buildingStyle = request.form['buildingStyle']
+        currentYear = int(datetime.datetime.now().year)
+        error = []
+        db = get_db()
+
+        if re.search("\d+\s.+", address) is None:
+            error.extend(["Please Enter a Valid Address"])
+        if re.search("[0-9]+", beds) is None:
+            error.extend(["Please Enter a Valid Integer of Bedrooms"])
+        if re.search("[0-9]+", baths) is None:
+            error.extend(["Please Enter a Valid Integer of Bathrooms"])
+        if re.search("[0-9]+", halfBaths) is None:
+            error.extend(["Please Enter a Valid Integer of Half Bathrooms"])
+        if re.search("[0-9]+", sqft) is None:
+            error.extend(["Please Enter a Valid Integer of Square Feet"])
+        if re.search("[0-9]+", zip) is None or len(zip) > 5 or len(zip) < 5:
+            error.extend(["Please Enter a Valid Zip Code"])
+        if re.search("[0-9]+", yearBuilt) is None or int(yearBuilt) > currentYear:
+            error.extend(["Please Enter a Valid Year Built"])
+        if re.search("[0-9]+", landValue) is None:
+            error.extend(["Please Enter a Valid Integer of Land Value"])
+
+        if re.search("[0-9]+", yearSold) is None or int(yearSold) > currentYear or int(yearSold) < int(yearBuilt):
+            error.extend(["Please Enter a Valid Year Sold"])
+        if re.search("[0-9]+", soldAmount) is None:
+            error.extend(["Please Enter a Valid Integer for Sold Amount"])
+        if renovationCost is None:
+            error.extend(["Please Enter a Valid Integer for Renovation Cost or enter 0"])
+        if re.search("[0-9]+", buildingValue) is None:
+            error.extend(["Please Enter a Valid Integer of Building Value"])
+        if re.search("[0-9]+", yearPurchased) is None or int(yearPurchased) > int(currentYear):
+            error.extend(["Please Enter a Valid Year Purchased"])
+        elif int(yearPurchased) < int(yearBuilt):
+            error.extend(["The Year Built must be before the Year Purchased"])
+        if db.execute(
                 'SELECT address, zip_code FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
                 (address, zip, session.get('user_id'))
         ).fetchone() is not None:
@@ -224,7 +300,34 @@ def table1():
         for eror in error:
             flash(eror)
 
-    return render_template('dashboard/tables.html')
+    return render_template('dashboard/soldPropertiesTable.html')
+
+
+# Deletes a property from sold properties when user presses delete button in soldPropertiesTable.html
+@bp.route('/soldProperties/delete', methods=('GET', 'POST'))
+def delete_soldPropertiess_row():
+    db = get_db()
+    if request.method == 'POST':
+        jsonData = request.get_json()
+        address = jsonData['address']
+        zip_code = jsonData['zip_code']
+        db.execute('DELETE FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                   (address, zip_code, session.get('user_id')))
+        db.commit()
+        print("Deleted Successfully")
+
+    return "Made it here in delete_table1_row()"
+
+
+# Sends all Previously owned properties to soldPropertiesTable.html
+@bp.route('/soldProperties/previousProperties', methods=('GET', 'POST'))
+def sendSoldProperties():
+    db = get_db()
+    query = "SELECT * FROM formerProperties WHERE userId = %s" % (session.get('user_id'))
+    data = pd.read_sql_query(query, db)
+    data.sort_values(by=["year_purchased"])
+    jsonData = data.to_json(orient="records")
+    return jsonData
 
 
 # Renders tables_2.html
@@ -234,7 +337,7 @@ def table2():
     return render_template('dashboard/tables_2.html')
 
 
-# Adds property to previously owned through the "Add" button on tables_2.html
+# Adds property to previously owned through the "Add" button on tables_2.html (Dashboard)
 @bp.route('/table1/add', methods=('GET', 'POST'))
 def addRow():
     db = get_db()
@@ -252,7 +355,6 @@ def addRow():
         school_dist = jsonData['school_dist']
         land_sq_ft = jsonData['land_sq_ft']
         year_built = jsonData['year_built']
-
         living_sq_ft = jsonData['living_sq_ft']
         condition = jsonData['condition']
         residence_type = jsonData['residence_type']
@@ -265,23 +367,25 @@ def addRow():
         attached_gar = jsonData['attached_gar']
         price = jsonData['price']
         grade = jsonData['grade']
+        currentYear = int(datetime.datetime.now().year)
 
         if db.execute(
-                'SELECT * FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+                'SELECT * FROM currentProperties WHERE address = ? AND zip_code = ? AND userId = ?',
                 (address, zip_code, session.get('user_id'))
         ).fetchone() is not None:
             db.execute(
-                'UPDATE formerProperties SET like_dislike = 1 WHERE address = ? AND zip_code = ? AND userId = ?',
+                'UPDATE currentProperties SET like_dislike = 1 WHERE address = ? AND zip_code = ? AND userId = ?',
                 (address, zip_code, session.get('user_id'))
             )
             db.commit()
             print("Updated Successfully")
         else:
             db.execute(
-                'INSERT INTO formerProperties(class,land_value,bldg_value,total_value,address,address_city,zip_code,owner,school_dist,land_sq_ft,year_built,living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,basement_beds,total_beds,attached_gar,price,grade,like_dislike,userID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
+                'INSERT INTO currentProperties(class,land_value,bldg_value,total_value,address,address_city,zip_code,owner,school_dist,land_sq_ft,year_built,living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,basement_beds,total_beds,attached_gar,price,grade, year_purchased, like_dislike,userID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);',
                 (class1, land_value, bldg_value, total_value, address, address_city, zip_code, owner, school_dist,
                  land_sq_ft, year_built, living_sq_ft, condition, residence_type, building_style, bath, half_bath,
-                 bedrooms, basement_beds, total_beds, attached_gar, price, grade, 1, session.get('user_id'))
+                 bedrooms, basement_beds, total_beds, attached_gar, price, grade, currentYear, 1,
+                 session.get('user_id'))
             )
             db.commit()
             print("Inserted Successfully")
@@ -297,7 +401,7 @@ def delete_table1_row():
         jsonData = request.get_json()
         address = jsonData['address']
         zip_code = jsonData['zip_code']
-        db.execute('DELETE FROM formerProperties WHERE address = ? AND zip_code = ? AND userId = ?',
+        db.execute('DELETE FROM currentProperties WHERE address = ? AND zip_code = ? AND userId = ?',
                    (address, zip_code, session.get('user_id')))
         db.commit()
         print("Deleted Successfully")
@@ -305,7 +409,7 @@ def delete_table1_row():
     return "Made it here in delete_table1_row()"
 
 
-# Sends filtered Previously owned properties to tables.html
+# Sends filtered Previously owned properties to tables.html (does update the SQL query....but not load it- delete later or find another solution)
 @bp.route('/table1/filterOwnedProperty', methods=('GET', 'POST'))
 def sendFilteredProperties():
     db = get_db()
@@ -316,10 +420,11 @@ def sendFilteredProperties():
             yearSold = request.form['yearSold']
         buildingStyle = request.form['buildingStyle']
 
-        query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id'))
+        query = "SELECT * FROM currentProperties WHERE userId = %s" % (session.get('user_id'))
         if buildingStyle != "all":
             buildingStyle = "'" + buildingStyle + "'"
-            query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id')) + " AND building_style = %s" % buildingStyle
+            query = "SELECT * FROM currentProperties WHERE userId = %s" % (
+                session.get('user_id')) + " AND building_style = %s" % buildingStyle
         data = pd.read_sql_query(query, db)
         jsonData = data.to_json(orient="records")
     return jsonData
@@ -329,7 +434,7 @@ def sendFilteredProperties():
 @bp.route('/table1/previousProperties', methods=('GET', 'POST'))
 def sendProperties():
     db = get_db()
-    query = "SELECT * FROM FormerProperties WHERE userId = %s" % (session.get('user_id'))
+    query = "SELECT * FROM currentProperties WHERE userId = %s" % (session.get('user_id'))
     data = pd.read_sql_query(query, db)
     data.sort_values(by=["year_purchased"])
     jsonData = data.to_json(orient="records")
