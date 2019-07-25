@@ -131,9 +131,8 @@ function addProperty(e) {
 function refreshTable() {
     $("#dataTable tbody tr").remove();
     updateTable()
-    window.location.reload(true)
-    displayOwnedTable()
-    createPie(".pieID.legend", ".pieID.pie");
+    // window.location.reload(true)
+    // displayOwnedTable()
     // window.location.reload(true)
 }
 
@@ -299,7 +298,6 @@ function displayOwnedTable() {
                     typeDict[typeArray[j]] = 0;
                 ++typeDict[typeArray[j]];
             }
-            console.log(typeDict)
 
             for(var key in typeDict){
                 $("#pieIDLegend").append('<li><em>' + key + '</em>' + '<span>' + typeDict[key] +'</span></li>')
@@ -308,6 +306,7 @@ function displayOwnedTable() {
             $("#amountBrought").append(countPurchase.toString())
             $("#amountSold").append(countSold.toString())
             $("#totalNetProfit").append("$" + totalProfit.toLocaleString())
+            createPie(".pieID.legend", ".pieID.pie");
         } else {
             $("#previousPropertyTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
         }
@@ -347,7 +346,6 @@ function displayOwnedTable() {
         var listData = [];
         $(dataElement + " span").each(function () {
             listData.push(Number($(this).html()));
-            console.log("last known")
         });
         var listTotal = 0;
         for (var i = 0; i < listData.length; i++) {

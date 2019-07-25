@@ -39,7 +39,7 @@ function displayTable(){
                 jsonResult[i].grade + '</td><td style="display:none;">' +
                 jsonResult[i].like_dislike + '</td><td>' +
                 '<button type="button" data-toggle="modal" data-target=".bd-map-modal-lg" name="map" class="mapButton btn" value="' + jsonResult[i].ID +'">Map</button' + '</td><td>' +
-                '<button type="button" data-toggle="modal" data-target=".bd-sold-modal-lg" name="sold" class="soldButton btn" value="' + jsonResult[i].ID +'">Map</button' + '</td><td>' +
+                '<button type="button" data-toggle="modal" data-target=".bd-sold-modal-lg" name="sold" class="soldButton btn" value="' + jsonResult[i].ID +'">Sell</button' + '</td><td>' +
                 '<button type="button" name="delete" class="deleteButton btn" value="' + jsonResult[i].ID +'">Delete</button' + '</td><tr>'
          		);
         	}

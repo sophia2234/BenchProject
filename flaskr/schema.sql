@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS currentProperties;
 DROP TABLE IF EXISTS formerProperties;
-
+/* Creates table for user */
 CREATE TABLE user (
   userId INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE user (
   description TEXT,
   profilePicture TEXT NOT NULL
 );
-
+/* Creates table for recommended properties */
 DROP TABLE IF EXISTS properties;
 CREATE TABLE properties(
    ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
@@ -43,7 +43,7 @@ CREATE TABLE properties(
   ,like_dislike   BIT  NOT NULL
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
-
+/* Creates table for owned properties */
 CREATE TABLE currentProperties(
    ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
   ,class          VARCHAR(10)
@@ -76,7 +76,7 @@ CREATE TABLE currentProperties(
   ,renovation_cost INTEGER
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
-
+/* Creates table for sold properties */
 CREATE TABLE formerProperties(
    ID             INTEGER  PRIMARY KEY  AUTOINCREMENT NOT NULL
   ,class          VARCHAR(10)
@@ -120,6 +120,19 @@ living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,bas
 VALUES (NEW.class, NEW.land_value, NEW.bldg_value, NEW.total_value, NEW.address, NEW.address_city, NEW.zip_code, NEW.owner, NEW.school_dist, NEW.land_sq_ft, 
 NEW.year_built, NEW.living_sq_ft, NEW.condition, NEW.residence_type, NEW.building_style, NEW.bath, NEW.half_bath, NEW.bedrooms,
 NEW.basement_beds, NEW.total_beds, NEW.attached_gar, NEW.price, NEW.grade, NEW.like_dislike, NEW.userId);
+
+END;
+
+/* This automatically adds new properties to the soldProperty database after user update the information to be sold */
+CREATE TRIGGER addToSoldDatabase AFTER UPDATE on currentProperties
+
+BEGIN
+
+INSERT INTO formerProperties(class,land_value,bldg_value,total_value,address,address_city,zip_code,owner,school_dist,land_sq_ft,year_built,
+living_sq_ft,condition,residence_type,building_style,bath,half_bath,bedrooms,basement_beds,total_beds,attached_gar,price,grade,like_dislike,year_purchased, year_sold, sold_price, renovation_cost, userID)
+VALUES (NEW.class, NEW.land_value, NEW.bldg_value, NEW.total_value, NEW.address, NEW.address_city, NEW.zip_code, NEW.owner, NEW.school_dist, NEW.land_sq_ft,
+NEW.year_built, NEW.living_sq_ft, NEW.condition, NEW.residence_type, NEW.building_style, NEW.bath, NEW.half_bath, NEW.bedrooms,
+NEW.basement_beds, NEW.total_beds, NEW.attached_gar, NEW.price, NEW.grade, NEW.like_dislike, NEW.year_purchased, NEW.year_sold, NEW.sold_price, NEW.renovation_cost, NEW.userId);
 
 END;
 

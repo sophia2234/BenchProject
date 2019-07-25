@@ -38,13 +38,13 @@ function displayTable(){
                 jsonResult[i].grade + '</td><td style="display:none;">' +
                 jsonResult[i].like_dislike + '</td><td>' +
                 '<button type="button" data-toggle="modal" data-target=".bd-map-modal-lg" name="map" class="mapButton btn" value="' + jsonResult[i].ID +'">Map</button' + '</td><td>' +
-                '<button type="button" data-toggle="modal" data-target=".bd-sold-modal-lg" name="sold" class="soldButton btn" value="' + jsonResult[i].ID +'">Map</button' + '</td><td>' +
+                '<button type="button" data-toggle="modal" data-target=".bd-sold-modal-lg" name="sold" class="soldButton btn" value="' + jsonResult[i].ID +'">Sell</button' + '</td><td>' +
                 '<button type="button" name="delete" class="deleteButton btn" value="' + jsonResult[i].ID +'">Delete</button' + '</td><tr>'
          		);
         	} 
             //Buttons
         	$(".mapButton").on("click", showMap);
-     		$(".soldButton").on("click", showMap);
+     		$(".soldButton").on("click", saleItem);
 			$(".deleteButton").on("click", deleteItem);
         } else {
         	$("#previousPropertyTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
@@ -114,7 +114,16 @@ function deleteItem(e) {
 }
 
 
+//This is called when a delete button is pushed, adds property to model as a "disliked" property
+function saleItem(e) {
+    var ID = e.target.value;
+    var address = e.target.parentNode.parentNode.childNodes[1].innerHTML;
+    var zip_code = e.target.parentNode.parentNode.childNodes[7].innerHTML;
+    console.log(address)
+     document.getElementById("preAddress").value = address;
+     document.getElementById("preZipCode").value = zip_code;
 
+}
 
 
 
