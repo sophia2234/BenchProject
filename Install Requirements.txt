@@ -1,11 +1,13 @@
-﻿Mark’s Version is Flask based (local host)
+Mark’s Version is Flask based (local host)
 Based on http://flask.pocoo.org/docs/dev/tutorial/database/
-Cd into the directory of myproject
+~Instructions~
+Mac:
+Cd into the directory of BenchProject
 Run these commands in terminal (MAC users)
 
 
-. venv/bin/activate
-flask init-db
+. venv/bin/activate 
+flask init-db <--- line ONLY used to reset the database and SQL script
 
 
 export FLASK_APP=flaskr
@@ -13,15 +15,14 @@ export FLASK_ENV=development
 flask run
 
 
-Problem: This doesn’t upload to Cloud storage as the syntax is different
-
 
 Windows Command Line:
-Cd into myproject
+Cd into the directory of BenchProject
 py -3 -m venv venv
 
 
-venv\Scripts\activate
+venv\Scripts\activate 
+flask init-db <--- line ONLY used to reset the database and SQL script
 
 
 Py -m pip install 
