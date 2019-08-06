@@ -4,6 +4,9 @@
     <list default="true" id="0273aa83-a4d0-4796-b617-bd746bf85049" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Install Requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Install Requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/flaskr.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/flaskr.sqlite" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +32,11 @@
     <session id="-1062912435">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.14" value="2" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="2" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,16 +58,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="649" />
-          <entry key="js" value="742" />
-          <entry key="py" value="861" />
+          <entry key="js" value="828" />
+          <entry key="py" value="887" />
           <entry key="sql" value="243" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="649" />
-          <entry key="JavaScript" value="742" />
-          <entry key="Python" value="861" />
+          <entry key="JavaScript" value="828" />
+          <entry key="Python" value="887" />
           <entry key="SQL" value="243" />
         </counts>
       </usages-collector>
@@ -78,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-772">
-              <caret line="458" column="17" lean-forward="true" selection-start-line="458" selection-start-column="17" selection-end-line="458" selection-end-column="17" />
+            <state relative-caret-position="184">
+              <caret line="410" column="69" selection-start-line="410" selection-start-column="69" selection-end-line="410" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -87,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="285" column="58" selection-start-line="285" selection-start-column="58" selection-end-line="285" selection-end-column="58" />
+            <state relative-caret-position="173">
+              <caret line="139" column="59" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -96,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3319">
-              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            <state relative-caret-position="892">
+              <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
@@ -140,15 +143,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/soldProperties.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-31">
-              <caret line="41" column="162" selection-start-line="41" selection-start-column="162" selection-end-line="41" selection-end-column="162" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -161,7 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ajax.googleapi</find>
       <find>changepa</find>
       <find>change</find>
       <find>card</find>
@@ -182,7 +175,6 @@
       <find>sold</find>
       <find>li</find>
       <find>soldProp</find>
-      <find>post</find>
       <find>renovationCost</find>
       <find>year</find>
       <find>redirect</find>
@@ -191,6 +183,8 @@
       <find>flash</find>
       <find>success</find>
       <find>soldProper</find>
+      <find>post</find>
+      <find>select</find>
     </findStrings>
     <replaceStrings>
       <replace>currentProperties</replace>
@@ -215,12 +209,12 @@
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/index.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/soldPropertiesTable.html" />
-        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/soldProperties.js" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/previousPropertyTable.js" />
         <option value="$PROJECT_DIR$/flaskr/schema.sql" />
-        <option value="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables.html" />
+        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" />
+        <option value="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" />
         <option value="$PROJECT_DIR$/flaskr/dashboard.py" />
       </list>
     </option>
@@ -247,7 +241,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -305,6 +298,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -361,8 +355,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="44" y="23" width="1246" height="691" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.3039867" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.3139535" />
       <window_info id="Structure" order="1" sideWeight="0.5153153" side_tool="true" weight="0.28903654" />
       <window_info id="Favorites" order="2" sideWeight="0.50082916" side_tool="true" weight="0.27056828" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -518,22 +513,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/soldProperties.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
+        <state relative-caret-position="615">
           <caret line="41" column="162" selection-start-line="41" selection-start-column="162" selection-end-line="41" selection-end-column="162" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="285" column="58" selection-start-line="285" selection-start-column="58" selection-end-line="285" selection-end-column="58" />
+        <state relative-caret-position="173">
+          <caret line="139" column="59" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3319">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        <state relative-caret-position="892">
+          <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
@@ -577,8 +572,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-772">
-          <caret line="458" column="17" lean-forward="true" selection-start-line="458" selection-start-column="17" selection-end-line="458" selection-end-column="17" />
+        <state relative-caret-position="184">
+          <caret line="410" column="69" selection-start-line="410" selection-start-column="69" selection-end-line="410" selection-end-column="69" />
         </state>
       </provider>
     </entry>
