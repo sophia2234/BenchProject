@@ -126,7 +126,7 @@ def changePassword():
 
         if not re.search("((?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,})", password):
             error.extend([
-                             "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
+                "Please enter a password at of least 8 characters containing an uppercase letter, lowercase letter, number, and special character."])
 
         if password != passwordConfirmation:
             error.extend(['Password must match.'])
@@ -394,6 +394,7 @@ def addRow():
     deleteRow()
     return "Made it here in addRow()"
 
+
 # Adds property to soldProperties owned through the "Sell" button on tables.html (ownedTable)
 @bp.route('/table1/sellProperty', methods=('GET', 'POST'))
 def addToSold():
@@ -407,7 +408,7 @@ def addToSold():
         currentYear = int(datetime.datetime.now().year)
         error = []
 
-        if re.search("[0-9]+", year_sold) is None or int(year_sold) > currentYear:
+        if re.search("[0-9]+", year_sold) is None or int(year_sold) < currentYear:
             error.extend(["Please Enter a Valid Year Sold"])
         if re.search("[0-9]+", soldAmount) is None:
             error.extend(["Please Enter a Valid Integer for Sold Amount"])
@@ -464,14 +465,17 @@ def sendFilteredProperties():
             yearSold = request.form['yearSold']
         buildingStyle = request.form['buildingStyle']
 
-        query = "SELECT * FROM currentProperties WHERE userId = %s" % (session.get('user_id'))
+        query = "SELECT * FROM formerProperties WHERE userId = %s" % (session.get('user_id'))
         if buildingStyle != "all":
             buildingStyle = "'" + buildingStyle + "'"
-            query = "SELECT * FROM currentProperties WHERE userId = %s" % (
+            query = "SELECT * FROM  formerProperties WHERE userId = %s" % (
                 session.get('user_id')) + " AND building_style = %s" % buildingStyle
         data = pd.read_sql_query(query, db)
         jsonData = data.to_json(orient="records")
-    return jsonData
+        response = redirect(url_for('dashboard.table2'))
+        response.mimetype = jsonData
+
+    return response
 
 
 # Sends all Previously owned properties to tables.html

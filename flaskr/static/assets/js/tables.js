@@ -314,7 +314,6 @@ function displayOwnedTable() {
 }
 
     function sliceSize(dataNum, dataTotal) {
-    console.log("here?")
         return (dataNum / dataTotal) * 360;
     }
 
@@ -366,7 +365,6 @@ function displayOwnedTable() {
         ];
         for (var i = 0; i < listData.length; i++) {
             var size = sliceSize(listData[i], listTotal);
-            console.log("got here")
             iterateSlices(size, pieElement, offset, i, 0, color[i]);
             $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
             offset += size;
