@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS currentProperties;
 DROP TABLE IF EXISTS formerProperties;
+DROP VIEW IF EXISTS soldProperityView;
 /* Creates table for user */
 CREATE TABLE user (
   userId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -109,6 +110,8 @@ CREATE TABLE formerProperties(
   ,renovation_cost INTEGER NOT NULL
   ,userId INTEGER NOT NULL, FOREIGN KEY (userId) REFERENCES user(userId)
 );
+
+CREATE VIEW soldProperityView AS select * From formerProperties;
 
 /* This automatically adds new properties to the model when added to the previous owned table */
 CREATE TRIGGER addFormerPropertyToModel AFTER INSERT on currentProperties

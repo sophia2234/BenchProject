@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0273aa83-a4d0-4796-b617-bd746bf85049" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Install Requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Install Requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/flaskr.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/flaskr.sqlite" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,43 +31,44 @@
     <session id="-1062912435">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.13" value="2" />
-          <entry key="project.open.time.14" value="3" />
+          <entry key="project.open.time.14" value="4" />
           <entry key="project.open.time.15" value="2" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="18" />
-          <entry key="js" value="13" />
+          <entry key="html" value="19" />
+          <entry key="js" value="14" />
           <entry key="py" value="1" />
-          <entry key="sql" value="3" />
+          <entry key="sql" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="18" />
-          <entry key="JavaScript" value="13" />
+          <entry key="HTML" value="19" />
+          <entry key="JavaScript" value="14" />
           <entry key="Python" value="1" />
-          <entry key="SQL" value="3" />
+          <entry key="SQL" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="649" />
           <entry key="js" value="828" />
-          <entry key="py" value="887" />
-          <entry key="sql" value="243" />
+          <entry key="py" value="957" />
+          <entry key="sql" value="278" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="649" />
           <entry key="JavaScript" value="828" />
-          <entry key="Python" value="887" />
-          <entry key="SQL" value="243" />
+          <entry key="Python" value="957" />
+          <entry key="SQL" value="278" />
         </counts>
       </usages-collector>
     </session>
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="410" column="69" selection-start-line="410" selection-start-column="69" selection-end-line="410" selection-end-column="69" />
+            <state relative-caret-position="145">
+              <caret line="467" column="34" lean-forward="true" selection-start-line="467" selection-start-column="34" selection-end-line="467" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="139" column="59" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="59" />
+            <state relative-caret-position="99">
+              <caret line="120" column="75" selection-start-line="120" selection-start-column="48" selection-end-line="120" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flaskr/schema.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
         </entry>
@@ -99,46 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/tables.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="892">
+            <state relative-caret-position="-537">
               <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#9;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#10;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#14;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#15;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#16;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#17;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#18;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#19;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#20;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#21;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#22;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#23;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#24;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#25;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#14;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#15;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#16;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#17;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#18;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#19;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#20;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#21;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#22;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#23;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#24;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#25;n#tr#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#26;n#tr#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -155,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>changepa</find>
       <find>change</find>
       <find>card</find>
       <find>previousProperties</find>
@@ -177,7 +147,6 @@
       <find>soldProp</find>
       <find>renovationCost</find>
       <find>year</find>
-      <find>redirect</find>
       <find>eror, &quot;error&quot;</find>
       <find>eror, &quot;</find>
       <find>flash</find>
@@ -185,6 +154,8 @@
       <find>soldProper</find>
       <find>post</find>
       <find>select</find>
+      <find>/table1/filterOwnedProperty</find>
+      <find>redirect</find>
     </findStrings>
     <replaceStrings>
       <replace>currentProperties</replace>
@@ -211,10 +182,10 @@
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/soldPropertiesTable.html" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/soldProperties.js" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/previousPropertyTable.js" />
-        <option value="$PROJECT_DIR$/flaskr/schema.sql" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" />
+        <option value="$PROJECT_DIR$/flaskr/schema.sql" />
         <option value="$PROJECT_DIR$/flaskr/dashboard.py" />
       </list>
     </option>
@@ -234,13 +205,14 @@
     <option name="x" value="44" />
     <option name="y" value="23" />
     <option name="width" value="1246" />
-    <option name="height" value="691" />
+    <option name="height" value="687" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,7 +270,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -354,10 +325,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="23" width="1246" height="691" extended-state="0" />
+    <frame x="44" y="23" width="1246" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.3139535" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.32392028" />
       <window_info id="Structure" order="1" sideWeight="0.5153153" side_tool="true" weight="0.28903654" />
       <window_info id="Favorites" order="2" sideWeight="0.50082916" side_tool="true" weight="0.27056828" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -469,38 +440,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flaskr/schema.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/previousPropertyTable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1590">
           <caret line="106" column="28" selection-start-line="106" selection-start-column="28" selection-end-line="106" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#9;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#10;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#14;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#15;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#16;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#17;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#18;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#19;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#20;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#21;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#22;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#23;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#24;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#25;n#tr#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -518,62 +461,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flaskr/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="139" column="59" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="59" />
+        <state relative-caret-position="99">
+          <caret line="120" column="75" selection-start-line="120" selection-start-column="48" selection-end-line="120" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/tables.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="892">
+        <state relative-caret-position="-537">
           <caret line="251" column="57" selection-start-line="251" selection-start-column="57" selection-end-line="251" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#9;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#10;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#14;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#15;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#16;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#17;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#18;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#19;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#20;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#21;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#22;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#23;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#24;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#25;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#14;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#15;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#16;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#17;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#18;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#19;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#20;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#21;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#22;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#23;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#24;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#25;n#tr#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#26;n#tr#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="410" column="69" selection-start-line="410" selection-start-column="69" selection-end-line="410" selection-end-column="69" />
+        <state relative-caret-position="145">
+          <caret line="467" column="34" lean-forward="true" selection-start-line="467" selection-start-column="34" selection-end-line="467" selection-end-column="34" />
         </state>
       </provider>
     </entry>
