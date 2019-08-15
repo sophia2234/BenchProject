@@ -5,6 +5,7 @@ import os
 
 from flask import Flask, render_template, request
 from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_mail import Mail, Message
 
 def create_app(test_config=None):
     # create and configure the app
@@ -13,8 +14,16 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
         UPLOADED_PHOTOS_DEST= 'flaskr/static/uploads',
+        # Flask mail setting..... pip uninstall flask-mail pip install flask_mail==0.9.0
+        # Replace username and password
+        # Using a gmail account : enable this https://www.google.com/settings/security/lesssecureapps
+        MAIL_USERNAME = "******@gmail.com",
+        MAIL_PASSWORD = "******",
+        MAIL_USE_TLS=True,
+        MAIL_USE_SSL=False,
+        MAIL_PORT=587,
+        MAIL_SERVER='smtp.gmail.com',
     )
-
     #Configure Profile Picture Upload
     photos = UploadSet('photos', IMAGES)
     configure_uploads(app, photos)

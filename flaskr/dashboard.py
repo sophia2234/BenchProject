@@ -84,7 +84,6 @@ def index():
                 (firstName, email, session.get('user_id'))
             ).fetchone()
             if str(destination[0]) != "uploads/stickfigure.png":
-                print(str(destination[0]))
                 os.remove('flaskr/static/' + str(destination[0]))
 
             db.execute(
@@ -459,20 +458,38 @@ def delete_table1_row():
 def sendFilteredProperties():
     db = get_db()
     if request.method == 'POST':
-        if request.form['yearPurchase'] != None:
-            yearPurchase = request.form['yearPurchase']
-        if request.form['yearSold'] != None:
-            yearSold = request.form['yearSold']
+        yearPurchase = request.form['yearPurchase']
+        yearSold = request.form['yearSold']
         buildingStyle = request.form['buildingStyle']
         db.execute("DROP VIEW IF EXISTS soldProperityView;")
-        if buildingStyle == "all":
+        if buildingStyle == "all" and yearPurchase == "" and yearSold == "":
             db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (session.get('user_id')))
+        elif buildingStyle == "all" and yearPurchase != "" and yearSold == "":
+            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                session.get('user_id')) + " AND year_purchased == %s" % yearPurchase)
+        elif buildingStyle == "all" and yearPurchase == "" and yearSold != "":
+            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                session.get('user_id')) + " AND year_sold == %s" % yearSold)
+        elif buildingStyle == "all" and yearPurchase != "" and yearSold != "":
+            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                session.get('user_id')) + " AND year_sold == %s" % yearSold + " AND year_purchased == %s" % yearPurchase)
         elif buildingStyle != "all":
             buildingStyle = "'" + buildingStyle + "'"
-            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
-                session.get('user_id')) + " AND building_style LIKE %s" % buildingStyle)
+            if yearPurchase == "" and yearSold == "":
+                db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                    session.get('user_id')) + " AND building_style LIKE %s" % buildingStyle)
+            elif yearPurchase != "" and yearSold == "":
+                db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                    session.get('user_id')) + " AND year_purchased == %s" % yearPurchase + " AND building_style LIKE %s" % buildingStyle)
+            elif yearPurchase == "" and yearSold != "":
+                db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                    session.get('user_id')) + " AND year_sold == %s" % yearSold + " AND building_style LIKE %s" % buildingStyle)
+            elif yearPurchase != "" and yearSold != "":
+                db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                    session.get(
+                        'user_id')) + " AND year_sold == %s" % yearSold + " AND year_purchased == %s" % yearPurchase + " AND building_style LIKE %s" % buildingStyle)
 
-    return render_template('dashboard/tables_2.html')
+    return redirect(url_for('dashboard.table2'))
 
 
 

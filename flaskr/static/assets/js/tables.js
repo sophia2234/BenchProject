@@ -244,7 +244,11 @@ function displayOwnedTable() {
     var url = "/soldProperties/previousProperties";
     var countSold = 0;
     var countPurchase = 0;
+    // Total Profit = Current Value of Investment - Cost of Investment
     var totalProfit = 0;
+    // Total Cost = Price + Cost of Renovation (Cost of Investment)
+    var totalCost = 0;
+    // ROI = (Current Value of Investment - Cost of Investment) / Cost of Investment
     var typeArray = []
     var typeDict = {};
     $.getJSON(url, null, function (jsonResult) {
@@ -259,6 +263,7 @@ function displayOwnedTable() {
                 var totalBaths = jsonResult[i].bath + (jsonResult[i].half_bath * 0.5);
                 var netProfit = jsonResult[i].sold_price - (jsonResult[i].renovation_cost + jsonResult[i].total_value)
                 totalProfit = netProfit + totalProfit
+                totalCost = jsonResult[i].total_value +  jsonResult[i].renovation_cost
                 typeArray.push(jsonResult[i].building_style)
                 $("#ownedPropertyDataTable tbody:last").append('<tr><td style="display:none;">' + jsonResult[i].ID + '</td><td>' +
                     jsonResult[i].address + '</td><td>' +
@@ -306,6 +311,7 @@ function displayOwnedTable() {
             $("#amountBrought").append(countPurchase.toString())
             $("#amountSold").append(countSold.toString())
             $("#totalNetProfit").append("$" + totalProfit.toLocaleString())
+            $("#roi").append(((totalProfit / totalCost) * 100).toFixed(2) + "%")
             createPie(".pieID.legend", ".pieID.pie");
         } else {
             $("#previousPropertyTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
