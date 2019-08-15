@@ -15,7 +15,7 @@ export FLASK_ENV=development
 flask run
 
 * Dependencies needed if environment doesn't match* 
-pip install the following : Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads
+pip install the following : Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail
 
 
 
@@ -29,7 +29,7 @@ flask init-db <--- line ONLY used to reset the database and SQL script
 
 * Dependencies* 
 Py -m pip install 
-        Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads
+        Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail
 
 
 Set FLASK_APP=flaskr
