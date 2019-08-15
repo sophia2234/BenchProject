@@ -325,7 +325,7 @@ def delete_soldPropertiess_row():
 @bp.route('/soldProperties/previousProperties', methods=('GET', 'POST'))
 def sendSoldProperties():
     db = get_db()
-    query = "SELECT * FROM formerProperties WHERE userId = %s" % (session.get('user_id'))
+    query = "SELECT * FROM soldProperityView WHERE userId = %s" % (session.get('user_id'))
     data = pd.read_sql_query(query, db)
     data.sort_values(by=["year_purchased"])
     jsonData = data.to_json(orient="records")
@@ -464,18 +464,16 @@ def sendFilteredProperties():
         if request.form['yearSold'] != None:
             yearSold = request.form['yearSold']
         buildingStyle = request.form['buildingStyle']
-
-        query = "SELECT * FROM formerProperties WHERE userId = %s" % (session.get('user_id'))
-        if buildingStyle != "all":
+        db.execute("DROP VIEW IF EXISTS soldProperityView;")
+        if buildingStyle == "all":
+            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (session.get('user_id')))
+        elif buildingStyle != "all":
             buildingStyle = "'" + buildingStyle + "'"
-            query = "SELECT * FROM  formerProperties WHERE userId = %s" % (
-                session.get('user_id')) + " AND building_style = %s" % buildingStyle
-        data = pd.read_sql_query(query, db)
-        jsonData = data.to_json(orient="records")
-        response = redirect(url_for('dashboard.table2'))
-        response.mimetype = jsonData
+            db.execute("CREATE VIEW soldProperityView AS select * From formerProperties WHERE userId = %s" % (
+                session.get('user_id')) + " AND building_style LIKE %s" % buildingStyle)
 
-    return response
+    return render_template('dashboard/tables_2.html')
+
 
 
 # Sends all Previously owned properties to tables.html
