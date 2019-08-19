@@ -151,9 +151,13 @@ def forgot_password():
                 'SELECT username FROM user WHERE email = ?', (email,)
             ).fetchone()
             username = str(find_username[0])
-            msg = Message("Hello, you receiving this email in regards to PropertyPicker. Your username is : " + username + " to reset your password please enter " + pin,
-                          sender= email,
+            # Title of email , define sender and recipient as the email inputted in forgot password
+            msg = Message("Hello, you receiving this email in regards to PropertyPicker. Your username is : " + username,
+                          sender=email,
                           recipients=[email])
+            # The body message for the email
+            msg.html = " To reset your password please enter " + pin + " by " + "<a href='http://127.0.0.1:5000/auth/update_password'>clicking here: </a>"
+            # To send it using Flask-Mail library (https://pythonhosted.org/Flask-Mail/)
             app = create_app(None)
             mail = Mail(app)
             mail.send(msg)

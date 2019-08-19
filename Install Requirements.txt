@@ -1,3 +1,6 @@
+Set-up Run Instructions:
+------------------------------
+
 Mark’s Version is Flask based (local host)
 Based on http://flask.pocoo.org/docs/dev/tutorial/database/
 ~Instructions~
@@ -35,3 +38,14 @@ Py -m pip install
 Set FLASK_APP=flaskr
 Set FLASK_ENV=development
 Flask run
+
+Run Instructions:
+------------------------------
+To run this application with full features, you must have Google Map API (Geo-Map API) Key.
+Need to input this in the map key script found at the bottom of table_2.html and tables.html
+
+For the forgot password feature, you will need a real email and password which can be found in _init_.py with less secure apps enabled. More details can be found on this page
+
+In the event that this application is uploaded to a cloud server: in auth.py, the forgot password link: http://127.0.0.1:5000/auth/forgot_password must be changed to web server link.
+
+
