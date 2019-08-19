@@ -311,6 +311,7 @@ function displayOwnedTable() {
             $("#amountBrought").append(countPurchase.toString())
             $("#amountSold").append(countSold.toString())
             $("#totalNetProfit").append("$" + totalProfit.toLocaleString())
+            $("#totalInvestment").append("$" + totalCost.toLocaleString())
             $("#roi").append(((totalProfit / totalCost) * 100).toFixed(2) + "%")
             createPie(".pieID.legend", ".pieID.pie");
         } else {
