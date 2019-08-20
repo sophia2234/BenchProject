@@ -14,7 +14,6 @@ from flaskr.__init__ import create_app
 import sqlite3
 import json
 from flask_uploads import UploadSet, configure_uploads, IMAGES
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

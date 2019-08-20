@@ -17,8 +17,8 @@ export FLASK_APP=flaskr
 export FLASK_ENV=development
 flask run
 
-* Dependencies needed if environment doesn't match* 
-pip install the following : Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail
+* Dependencies needed ONLY if environment doesn't match* 
+pip install the following : Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail, flask-share
 
 
 
@@ -30,9 +30,9 @@ py -3 -m venv venv
 venv\Scripts\activate 
 flask init-db <--- line ONLY used to reset the database and SQL script
 
-* Dependencies* 
+* Dependencies needed ONLY if environment doesn't match* 
 Py -m pip install 
-        Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail
+        Flask, seaborn, numpy, pandas, maplotlib, sklearn, flask_uploads, Flask-Mail, flask-share
 
 
 Set FLASK_APP=flaskr
@@ -42,7 +42,7 @@ Flask run
 Run Instructions:
 ------------------------------
 To run this application with full features, you must have Google Map API (Geo-Map API) Key.
-Need to input this in the map key script found at the bottom of table_2.html and tables.html
+Need to input this in the map key script found at the bottom of table_2.html, soldProperties.html and tables.html
 
 For the forgot password feature, you will need a real email and password which can be found in _init_.py with less secure apps enabled. More details can be found on this page
 
