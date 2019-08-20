@@ -5,8 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Install Requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Install Requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskr/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/img/architectural-design-architecture-daylight-2083459.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/img/architectural-design-architecture-daylight-2083459.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/img/architecture-beautiful-exterior-106399.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/img/architecture-beautiful-exterior-106399.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/static/assets/img/architecture-buy-construction-461024.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/static/assets/img/architecture-buy-construction-461024.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,43 +42,47 @@
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="4" />
-          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cfg" value="1" />
-          <entry key="html" value="30" />
+          <entry key="css" value="1" />
+          <entry key="html" value="31" />
           <entry key="js" value="17" />
-          <entry key="py" value="10" />
+          <entry key="py" value="12" />
           <entry key="sql" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="30" />
+          <entry key="CSS" value="1" />
+          <entry key="HTML" value="31" />
           <entry key="Ini" value="1" />
           <entry key="JavaScript" value="17" />
-          <entry key="Python" value="10" />
+          <entry key="Python" value="12" />
           <entry key="SQL" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1473" />
+          <entry key="css" value="27" />
+          <entry key="html" value="1662" />
           <entry key="js" value="977" />
-          <entry key="py" value="2449" />
+          <entry key="py" value="2454" />
           <entry key="sql" value="278" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1473" />
+          <entry key="CSS" value="27" />
+          <entry key="HTML" value="1662" />
           <entry key="JavaScript" value="977" />
-          <entry key="Python" value="2449" />
+          <entry key="Python" value="2454" />
           <entry key="SQL" value="278" />
         </counts>
       </usages-collector>
@@ -89,17 +96,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4965">
-              <caret line="332" column="66" selection-start-line="332" selection-start-column="63" selection-end-line="332" selection-end-column="66" />
+            <state relative-caret-position="262">
+              <caret line="218" column="31" selection-start-line="218" selection-start-column="31" selection-end-line="218" selection-end-column="31" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="81" column="69" selection-start-line="81" selection-start-column="69" selection-end-line="81" selection-end-column="69" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flaskr/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="-250">
+              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding>
                 <element signature="e#205#214#0" expanded="true" />
               </folding>
@@ -108,8 +132,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/pyvenv.cfg">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -193,7 +221,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/results.html" />
-        <option value="$PROJECT_DIR$/flaskr/static/assets/css/material-dashboard.css" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/uploads.py" />
         <option value="$PROJECT_DIR$/flaskr/templates/base.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/auth/register.html" />
@@ -206,16 +233,17 @@
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/previousPropertyTable.js" />
         <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables.html" />
         <option value="$PROJECT_DIR$/flaskr/schema.sql" />
-        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/auth/login.html" />
-        <option value="$PROJECT_DIR$/flaskr/dashboard.py" />
         <option value="$PROJECT_DIR$/flaskr/templates/auth/forgot_password.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/auth/update_Password.html" />
         <option value="$PROJECT_DIR$/flaskr/templates/auth/update_password.html" />
-        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" />
         <option value="$PROJECT_DIR$/flaskr/static/assets/js/tables.js" />
         <option value="$PROJECT_DIR$/flaskr/auth.py" />
+        <option value="$PROJECT_DIR$/flaskr/dashboard.py" />
         <option value="$PROJECT_DIR$/flaskr/__init__.py" />
+        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html" />
+        <option value="$PROJECT_DIR$/flaskr/static/assets/css/material-dashboard.css" />
+        <option value="$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html" />
       </list>
     </option>
   </component>
@@ -231,8 +259,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="168" />
     <option name="y" value="23" />
-    <option name="width" value="1246" />
+    <option name="width" value="1395" />
     <option name="height" value="687" />
   </component>
   <component name="ProjectView">
@@ -240,7 +269,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,12 +297,34 @@
             <path>
               <item name="BenchProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="BenchProject" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskr" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BenchProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BenchProject" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskr" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BenchProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BenchProject" type="462c0819:PsiDirectoryNode" />
+              <item name="flaskr" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BenchProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BenchProject" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -330,9 +380,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1246" height="687" extended-state="0" />
+    <frame x="168" y="23" width="1395" height="687" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.3513289" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48468468" visible="true" weight="0.31781226" />
       <window_info id="Structure" order="1" sideWeight="0.5153153" side_tool="true" weight="0.28903654" />
       <window_info id="Favorites" order="2" sideWeight="0.50082916" side_tool="true" weight="0.27056828" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -401,7 +452,6 @@
     <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/uploads.py" />
     <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/uploads.php" />
     <entry file="file://$PROJECT_DIR$/flaskr/db.py" />
-    <entry file="file://$PROJECT_DIR$/flaskr/static/assets/css/material-dashboard.css" />
     <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/map.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -448,24 +498,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/soldProperties.js" />
-    <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="105" column="16" lean-forward="true" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="134" column="74" lean-forward="true" selection-start-line="134" selection-start-column="74" selection-end-line="134" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -490,13 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4965">
-          <caret line="332" column="66" selection-start-line="332" selection-start-column="63" selection-end-line="332" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flaskr/static/assets/js/tables.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4035">
@@ -518,15 +547,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flaskr/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-250">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding>
+            <element signature="e#205#214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/pyvenv.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/flaskr/__init__.py">
+    <entry file="file://$PROJECT_DIR$/flaskr/dashboard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        <state relative-caret-position="15">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/tables_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="218" column="31" selection-start-line="218" selection-start-column="31" selection-end-line="218" selection-end-column="31" />
           <folding>
-            <element signature="e#205#214#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskr/static/assets/css/material-dashboard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="e#72612#72815#2" expanded="true" />
+            <element signature="e#73061#73213#2" expanded="true" />
+            <element signature="e#73770#73919#2" expanded="true" />
+            <element signature="e#74279#74445#1" expanded="true" />
+            <element signature="e#84718#84961#2" expanded="true" />
+            <element signature="e#85978#86227#2" expanded="true" />
+            <element signature="e#114270#114463#2" expanded="true" />
+            <element signature="e#114518#114711#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flaskr/templates/dashboard/homepage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="81" column="69" selection-start-line="81" selection-start-column="69" selection-end-line="81" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

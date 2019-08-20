@@ -5,8 +5,8 @@ import os
 
 from flask import Flask, render_template, request
 from flask_uploads import UploadSet, configure_uploads, IMAGES
-from flask_mail import Mail, Message
-
+from flask_share import Share
+share = Share()
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -51,5 +51,5 @@ def create_app(test_config=None):
     from . import dashboard
     app.register_blueprint(dashboard.bp)
     app.add_url_rule('/', endpoint='table2')
-
+    share.init_app(app)
     return app
