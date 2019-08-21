@@ -192,6 +192,7 @@
                                 <div class="table-responsive">
                                     <table class="table" id="ownedPropertyDataTable">
                                         <thead class=" text-primary">
+                                        <th style="display:none">ID</th>
                                         <th>Address</th>
                                         <th>Type</th>
                                         <th>Beds</th>
@@ -227,7 +228,8 @@
                     <!-- commented out code here.....does print but wrong format -->
                     <!--  <button class="btn btn-primary" type="button" href="#" onclick="HTMLtoPDF()">Download PDF</button> -->
                     <button class="btn btn-primary" type="button" href="#" onclick="makePDF()">Download PDF</button>
-
+                    <a id="dlink"  style="display:none;"></a>
+                    <input class="btn btn-primary" type="button" onclick="tableToExcel('ownedPropertyDataTable', 'propertyPickerInvestment', 'myInvestmentfile.xls')" value="Export to Excel">
                 </div>
             </div>
         </div>
@@ -356,7 +358,7 @@
 
 <script>
     function myFunction() {
-        <!--   relates to the navbar using flex-box to hamburger   -->
+        <!--   relates to the navbar using flex-box to hamburger-->
         var x = document.getElementById("burger");
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
@@ -414,6 +416,21 @@
         vme.print();
         vme.close();
     }
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name, filename) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").click();
+
+        }
+    })()
 </script>
 
 </body>
