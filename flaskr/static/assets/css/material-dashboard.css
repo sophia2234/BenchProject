@@ -63,10 +63,18 @@
 
 */
 
+.anychart-credits-text, .anychart-credits-logo{
+  display:none !important;
+}
 @keyframes bake-pie {
   from {
     transform: rotate(0deg) translate3d(0,0,0);
   }
+}
+#house_pie{
+  width: 100%;
+  height: 100%;
+  padding-bottom: 30px;
 }
 .pieID {
   display: inline-block;

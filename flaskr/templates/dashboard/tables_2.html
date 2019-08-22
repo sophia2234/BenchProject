@@ -30,6 +30,8 @@
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-pie.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{ url_for('static', filename='assets/css/material-dashboard.css') }}" rel="stylesheet"/>
      {{ share.load() }}
@@ -109,13 +111,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="pieID pie">
+                    <div id="house_pie">
 
                     </div>
-                    <ul class="pieID legend" id="pieIDLegend">
-                        <!-- Dynamically loading from tables.js -->
+                   <!--recycled code for now  (this version is faster but don't show percentage<ul class="pieID legend" id="pieIDLegend">
+                        ----Dynamically loading from tables.js ---
 
-                    </ul>
+                    </ul>-->
                 </div>
                 <div class="col-md-4">
                     <form method="post" action="/table1/filterOwnedProperty">
@@ -311,6 +313,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSIgQOE8qkbnu2eHzFNlvvFtSADlf2eas"></script>
 
 <!--   Core JS Files   -->
+<script src="{{ url_for('static', filename='assets/js/core/anychart-core.min.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='assets/js/jquery-3.4.1.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='assets/js/jspdf.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='assets/js/tables.js') }}" type="text/javascript"></script>
