@@ -303,80 +303,112 @@ function displayOwnedTable() {
                     typeDict[typeArray[j]] = 0;
                 ++typeDict[typeArray[j]];
             }
-
+            var data = []
             for(var key in typeDict){
-                $("#pieIDLegend").append('<li><em>' + key + '</em>' + '<span>' + typeDict[key] +'</span></li>')
+                data.push({x: key, value: typeDict[key]})
+                // part of recycled code $("#pieIDLegend").append('<li><em>' + key + '</em>' + '<span>' + typeDict[key] +'</span></li>')
             }
+
+            console.log(data)
 
             $("#amountBrought").append(countPurchase.toString())
             $("#amountSold").append(countSold.toString())
             $("#totalNetProfit").append("$" + totalProfit.toLocaleString())
             $("#totalInvestment").append("$" + totalCost.toLocaleString())
             $("#roi").append(((totalProfit / totalCost) * 100).toFixed(2) + "%")
-            createPie(".pieID.legend", ".pieID.pie");
+            // recycled code for a different version createPie(".pieID.legend", ".pieID.pie");
+            anychart.onDocumentReady(function() {
+
+                // create the chart
+                var chart = anychart.pie();
+              
+                // set the chart title
+                // chart.title("Investment Building Style Breakdown");
+              
+                // add the data
+                chart.data(data);
+                
+                // sort elements
+                // chart.sort("desc");  
+                // enable html for the legend
+                chart.legend().useHtml(true);
+                chart.background().fill("#eee");
+                // configure the format of legend items
+                chart.legend().itemsFormat(
+                "<span style='color:#455a64;font-weight:600'>{%x}:</span> {%value}");
+                // set legend position
+                chart.legend().position("right");
+                // set items layout
+                chart.legend().itemsLayout("vertical");  
+              
+                // display the chart in the container
+                chart.container('house_pie');
+                chart.draw();
+              
+              });
         } else {
-            $("#previousPropertyTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
+            $("#ownedPropertyDataTable tbody:last").append('<tr><td>There are no known previous properties.</td></tr>');
         }
     });
 }
+    // recycled code for different version : option to remove (sliceSize to createPie function)
+    // function sliceSize(dataNum, dataTotal) {
+    //     return (dataNum / dataTotal) * 360;
+    // }
 
-    function sliceSize(dataNum, dataTotal) {
-        return (dataNum / dataTotal) * 360;
-    }
+    // function addSlice(sliceSize, pieElement, offset, sliceID, color) {
+    //     $(pieElement).append("<div class='slice " + sliceID + "'><span>'number'</span></div>");
+    //     var offset = offset - 1;
+    //     var sizeRotation = -179 + sliceSize;
+    //     $("." + sliceID).css({
+    //         "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
+    //     });
+    //     $("." + sliceID + " span").css({
+    //         "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+    //         "background-color": color
+    //     });
+    // }
 
-    function addSlice(sliceSize, pieElement, offset, sliceID, color) {
-        $(pieElement).append("<div class='slice " + sliceID + "'><span></span></div>");
-        var offset = offset - 1;
-        var sizeRotation = -179 + sliceSize;
-        $("." + sliceID).css({
-            "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
-        });
-        $("." + sliceID + " span").css({
-            "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
-            "background-color": color
-        });
-    }
+    // function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+    //     var sliceID = "s" + dataCount + "-" + sliceCount;
+    //     var maxSize = 179;
+    //     if (sliceSize <= maxSize) {
+    //         addSlice(sliceSize, pieElement, offset, sliceID, color);
+    //     } else {
+    //         addSlice(maxSize, pieElement, offset, sliceID, color);
+    //         iterateSlices(sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+    //     }
+    // }
 
-    function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, color) {
-        var sliceID = "s" + dataCount + "-" + sliceCount;
-        var maxSize = 179;
-        if (sliceSize <= maxSize) {
-            addSlice(sliceSize, pieElement, offset, sliceID, color);
-        } else {
-            addSlice(maxSize, pieElement, offset, sliceID, color);
-            iterateSlices(sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
-        }
-    }
-
-    function createPie(dataElement, pieElement) {
-        var listData = [];
-        $(dataElement + " span").each(function () {
-            listData.push(Number($(this).html()));
-        });
-        var listTotal = 0;
-        for (var i = 0; i < listData.length; i++) {
-            listTotal += listData[i];
-        }
-        var offset = 0;
-        var color = [
-            "cornflowerblue",
-            "olivedrab",
-            "orange",
-            "tomato",
-            "crimson",
-            "purple",
-            "turquoise",
-            "forestgreen",
-            "navy",
-            "gray"
-        ];
-        for (var i = 0; i < listData.length; i++) {
-            var size = sliceSize(listData[i], listTotal);
-            iterateSlices(size, pieElement, offset, i, 0, color[i]);
-            $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
-            offset += size;
-        }
-    }
+    // function createPie(dataElement, pieElement) {
+    //     var listData = [];
+    //     $(dataElement + " span").each(function () {
+    //         listData.push(Number($(this).html()));
+    //     });
+    //     var listTotal = 0;
+    //     for (var i = 0; i < listData.length; i++) {
+    //         listTotal += listData[i];
+    //     }
+    //     var offset = 0;
+    //     var color = [
+    //         "cornflowerblue",
+    //         "olivedrab",
+    //         "orange",
+    //         "tomato",
+    //         "crimson",
+    //         "purple",
+    //         "turquoise",
+    //         "forestgreen",
+    //         "navy",
+    //         "gray"
+    //     ];
+    //     for (var i = 0; i < listData.length; i++) {
+    //         var size = sliceSize(listData[i], listTotal);
+    //         iterateSlices(size, pieElement, offset, i, 0, color[i]);
+    //         $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+    //         offset += size;
+    //     }
+    // }
 
 
 
