@@ -273,9 +273,10 @@ function displayOwnedTable() {
                     jsonResult[i].year_purchased + '</td><td>' +
                     "$" + jsonResult[i].total_value.toLocaleString() + '</td><td>' +
                     jsonResult[i].year_sold + '</td><td>' +
-                    jsonResult[i].sold_price + '</td><td>' +
-                    jsonResult[i].renovation_cost + '</td><td>' +
-                    "$" + netProfit.toLocaleString() + '</td><td style="display:none;">' +
+                    "$" + jsonResult[i].sold_price.toLocaleString() + '</td><td>' +
+                    "$" + jsonResult[i].renovation_cost.toLocaleString() + '</td><td>' +
+                    "$" + netProfit.toLocaleString() + '</td><td>' +
+                    ((totalProfit / totalCost) * 100).toFixed(2) + "%" + '</td><td style="display:none;">' +
 
                     //Hidden columns
                     jsonResult[i].class + '</td><td style="display:none;">' +
