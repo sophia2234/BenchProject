@@ -17,8 +17,8 @@ def create_app(test_config=None):
         # Flask mail setting..... pip uninstall flask-mail pip install flask_mail==0.9.0
         # Replace username and password
         # Using a gmail account : enable this https://www.google.com/settings/security/lesssecureapps
-        MAIL_USERNAME = "*******@gmail.com",
-        MAIL_PASSWORD = "*******",
+        MAIL_USERNAME = "*****",
+        MAIL_PASSWORD = "*****",
         MAIL_USE_TLS=True,
         MAIL_USE_SSL=False,
         MAIL_PORT=587,
